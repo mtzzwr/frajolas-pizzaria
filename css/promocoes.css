@@ -1,0 +1,51 @@
+/* página promoções */
+#container-promocoes {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 90px;
+    margin: auto;
+}
+
+.container-produtos-promocoes {
+    display: flex;
+    flex-wrap: wrap;
+    width: inherit;
+    padding-top: 5%;
+    margin: auto;
+}
+
+#container-promocoes .card-produto {
+    width: 380px;
+    height: 540px;
+    color: black;
+    margin: auto auto 100px auto;
+    box-sizing: border-box;
+    border: 1px solid #6e0101;
+}
+
+
+#opacity-promocao {
+    width: inherit;
+    height: 500px;
+    background-color:rgba(37, 34, 34, 0.76);
+    position: absolute;
+    margin-top: 90px;
+}
+
+.titulo-promocao {
+    text-align: center;
+    font-size: 2.4em;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.preco-antigo {
+    text-align: center;
+}
+
+
+small {
+    text-decoration: line-through;
+    font-size: 1.4em;
+    color: #9e9e9e;
+}

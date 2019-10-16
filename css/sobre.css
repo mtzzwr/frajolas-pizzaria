@@ -1,0 +1,95 @@
+/* página sobre */
+#container-sobre {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: auto;
+    color: white;
+    flex-wrap: wrap;
+}
+
+.historia {
+    text-align: center;
+    height: auto;
+}
+
+.txt-historia {
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.txt-historia h1 {
+    font-size: 2em;
+    letter-spacing: 5px;
+    margin: auto;
+    margin-bottom: 15px;
+    color: #6e0101;;
+}
+
+.txt-historia p {
+    font-size: 1.3em;
+    letter-spacing: 2px;
+    margin: auto;
+    margin-top: 15px;
+    color: black;
+}
+
+.diferenciais {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 80px;
+}
+
+.card-diferenciais {
+    display: grid;
+    grid-template-areas: 
+    "h3"
+    "title"
+    "desc";
+    width: 300px;
+    height: 460px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card-diferenciais a {
+    grid-area: h3;
+    height: 100px;
+    width: 100%;
+    margin: auto;
+    margin-left: 38%;
+}
+
+.card-diferenciais .title {
+    grid-area: title;
+}
+
+.card-diferenciais .title h1{
+    text-align: center;
+    font-size: 1.7em;
+    color: #6e0101;
+}
+
+.card-diferenciais .desc p {
+    text-align: center;
+    font-size: 1.3em;
+    color: black;
+}
+
+.card-diferenciais .desc {
+    grid-area: desc;
+}
+
+#banner-sobre {
+    background-image: url(../images/slide03.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 90px;
+    margin-bottom: 60px;
+}
+
+#opacity-sobre {
+    margin-top: 0px;
+}

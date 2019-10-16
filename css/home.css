@@ -1,0 +1,53 @@
+.slide-container {
+    width: 100%;
+    height: 600px;
+    margin-top: 90px;
+    position: static;
+}
+
+.sidenav {
+    width: 200px;
+}
+
+.sidemenu {
+    text-align: center;
+    list-style: none;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.sidemenu-item {
+    margin-top: 20px;
+    border: solid 1px white;
+    width: 98%;
+    height: 40px;
+    padding: 20px 0 17px 0;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(to right, #b41111 0%, #6d0000 100%);
+}
+
+.sidemenu-item:first-child {
+    margin-top: 0;
+}
+
+.sidemenu-item:hover {
+    cursor: pointer;
+    border: solid 1px black;
+}
+
+.container-principal {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    margin: auto;
+}
+
+.container-principal .container-produtos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 2%;
+    width: 100%;
+    margin: auto;
+}

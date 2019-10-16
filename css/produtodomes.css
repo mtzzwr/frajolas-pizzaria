@@ -1,0 +1,75 @@
+#container-produto-mes {
+    /* grid-template-areas: 
+    "banner-produto-mes"
+    "info-produto-mes"
+    "footer"; */
+}
+
+.info-produto-mes {
+    grid-area: info-produto-mes;
+    display: grid;
+    grid-template-areas: 
+    "txt-produto-mes"
+    "img-produto-mes"
+    "desc-produto-mes";
+    width: 100%;
+    height: auto;
+}
+
+.txt-produto-mes {
+    grid-area: txt-produto-mes;
+    text-align: center;
+    font-size: 1.7em;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.img-produto-mes {
+    grid-area: img-produto-mes;
+    width: inherit;
+    text-align: center;
+}
+
+.desc-produto-mes {
+    grid-area: desc-produto-mes;
+    text-align: center;
+    line-height: 50px;
+    margin-bottom: 50px;
+}
+
+.desc-produto-mes h1 {
+    font-size: 1.7em;
+}
+
+.desc-produto-mes span {
+    font-size: 1.4em;
+}
+
+.desc-produto-mes p {
+    font-size: 1.8em;
+}
+
+.btn-produto-mes {
+    width: 500px;
+    height: 50px;
+    background-color: aliceblue;
+    margin-top: 20px;
+    color: #6e0101;
+    text-decoration: none;
+    font-size: 1.6em;
+    padding: 10px;  
+    border: 2px solid #6e0101;
+    display: inline-block;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    -webkit-tap-highlight-color: transparent;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px transparent;
+}
+
+.btn-produto-mes:hover {
+    transform: translateY(-5px);
+}
+
+
+

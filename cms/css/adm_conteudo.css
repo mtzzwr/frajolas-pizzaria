@@ -1,0 +1,18 @@
+.card-conteudo {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    text-align: center;
+}
+
+.card-conteudo img {
+    box-shadow: 0px 3px 28px 4px rgba(0, 0, 0, 0.555);
+    cursor: pointer;
+    height: 207px;
+}
+
+
+.card-conteudo span {
+    margin-top: 8px;
+    font-size: 1.8em;
+}

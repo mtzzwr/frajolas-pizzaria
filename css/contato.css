@@ -1,0 +1,129 @@
+header {
+    z-index: 0;
+}
+
+
+
+#container-contato {
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+}
+
+.form-div {
+    display: flex;
+    flex-direction: column;
+    grid-area: form-div;
+	padding-left:135px;
+	padding-right:35px;
+	padding-top:35px;
+	padding-bottom:50px;
+    width: 1200px;
+    height: auto;
+	float: left;
+    margin: auto;
+    color: black;
+}
+
+.form-contato {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 700px;
+    padding: 10px;
+    color: black;
+    font-size: 1.3em;
+    line-height: 42px;
+    margin: auto;
+}
+
+.input-nome {
+    grid-area: input-nome;
+}
+
+.input-email {
+    grid-area: input-email;
+}
+
+.input-celular {
+    grid-area: input-celular;
+}
+
+.input-telefone {
+    grid-area: input-telefone;
+}
+
+.input-homepage {
+    grid-area: input-homepage;
+}
+
+.input-facebook {
+    grid-area: input-facebook;
+}
+
+.input-profissao {
+    grid-area: input-profissao;
+}
+
+.lbl-sexo {
+    grid-area: lbl-sexo;
+}
+
+.div-radio {
+    grid-area: div-radio;
+}
+
+.select-msg {
+    grid-area: select-msg;
+}
+
+.text-area-msg {
+    grid-area: text-area-msg;
+}
+
+.btn-enviar {
+    grid-area: btn-enviar;
+}
+
+#btn-enviar {
+    width: 100%;
+}
+
+select {
+    width: 210px;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    height: 180px;
+    background-color:rgba(104, 9, 9, 0);
+    overflow: hidden;
+}
+
+.form-contato input[type="text"] {
+    width: 100%;
+    outline: none;
+    background-color:rgba(104, 9, 9, 0);
+    color: black;
+}
+
+
+.desc-contato {
+    padding: 30px;
+    text-align: center;
+    margin: auto;
+}
+
+.desc-contato h1 {
+    font-size: 2em;
+}
+
+.desc-contato hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.desc-contato h2 {
+    font-size: 1.5em;
+}
