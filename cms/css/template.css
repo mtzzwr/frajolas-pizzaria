@@ -210,3 +210,15 @@ table td a {
     color: #ffffff;
     padding: 2%;
 }
+
+.conteudo {
+    width: 1300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.conteudo h1 {
+    margin: auto;
+}

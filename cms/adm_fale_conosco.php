@@ -11,6 +11,7 @@ $tipo_mensagem = null;
 require_once('../db/conexao.php');
 $conexao = conexaoMysql();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +33,8 @@ $conexao = conexaoMysql();
 
             $('#close').on('click', function() {
                 $('.container-modal').fadeOut(1000);
+                var urlAtual = window.location.href;
+                window.location.href=urlAtual;
             });
 
         });

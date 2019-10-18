@@ -71,18 +71,11 @@
     font-size: 1em;
 }
 
-.conteudo-contato {
-    width: 1500px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.conteudo-contato form, table {
+.conteudo form, table {
     margin: auto;
 }
 
-.conteudo-contato form {
+.conteudo form {
     width: 1150px;
     height: 100px;
 }
