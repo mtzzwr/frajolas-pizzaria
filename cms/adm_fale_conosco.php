@@ -11,6 +11,18 @@ $tipo_mensagem = null;
 require_once('../db/conexao.php');
 $conexao = conexaoMysql();
 
+$cod = @$_GET['codigo'];
+$modo = @$_GET['modo'];
+
+if (isset($modo)) {
+    if ($modo == 'deletar') {
+        $sql = "DELETE FROM tbl_contato WHERE id = '" . $cod . "'";
+
+        if (mysqli_query($conexao, $sql))  header('location:./adm_fale_conosco.php');
+        else echo 'erro ao excluir';
+    }
+}
+
 
 ?>
 
@@ -34,7 +46,7 @@ $conexao = conexaoMysql();
             $('#close').on('click', function() {
                 $('.container-modal').fadeOut(1000);
                 var urlAtual = window.location.href;
-                window.location.href=urlAtual;
+                window.location.href = urlAtual;
             });
 
         });
@@ -134,7 +146,7 @@ $conexao = conexaoMysql();
                                 <td><?php echo $rs['tipo_mensagem']; ?></td>
                                 <td>
                                     <a onclick="modalDados(<?= $rs['id']; ?>);" class="btn-visualizar" href="#"><img src="./images/lupa.png" alt=""></a>
-                                    <a onclick="return confirm('Deseja realmente excluir o contato?');" href="./db/excluirContato.php?codigo=<?= $rs['id'] ?>"><img src="./images/delete.png" alt=""></a>
+                                    <a onclick="return confirm('Deseja realmente excluir o contato?');" href="./adm_fale_conosco.php?modo=deletar&codigo=<?= $rs['id'] ?>"><img src="./images/delete.png" alt=""></a>
                                 </td>
                             </tr>
 

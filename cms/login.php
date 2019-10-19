@@ -29,6 +29,8 @@ if ($status == 0) {
         $_SESSION['idNivel'] = $idNivel;
         $_SESSION['status'] = $status;
         header('location:./cms/home.php');
+    }else{
+        echo '<script>alert("Esse usuário não existe"); window.history.go(-1)</script>';
     }
 } else {
     echo 'erro';

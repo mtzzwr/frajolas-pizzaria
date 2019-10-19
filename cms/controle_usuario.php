@@ -60,7 +60,7 @@ $conexao = conexaoMysql();
                                     echo $rs['id_nivel']; ?></td>
                                 <td>
                                     <a href="./add_usuario.php?modo=editar&codigo=<?= $rs['id_usuario']; ?>" class="btn-editar" href="#"><img src="./images/pen.png" alt=""></a>
-                                    <a onclick="return confirm('Deseja realmente deletar o usuário?')" href="./db/excluir-usuario.php?codigo=<?= $rs['id_usuario'] ?>"><img src="./images/delete.png" alt=""></a>
+                                    <a onclick="return confirm('Deseja realmente deletar o usuário?')" href="./add_usuario.php?modo=deletar&codigo=<?= $rs['id_usuario'] ?>"><img src="./images/delete.png" alt=""></a>
                                 </td>
                                 <td><?php if ($rs['status'] == 1) {
 

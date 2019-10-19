@@ -28,7 +28,13 @@ $chkOn = null;
 $chkOff = null;
 
 if (isset($modo)) {
-    if ($modo == 'editar') {
+    if ($modo == 'deletar') {
+        $sql = "DELETE FROM tbl_usuario WHERE id_usuario = " . $cod . "";
+
+        if (mysqli_query($conexao, $sql))  header('location:./controle_usuario.php');
+        else echo 'erro ao excluir';
+
+    } else if ($modo == 'editar') {
         $btn = 'Editar';
 
         $sql = "SELECT * FROM tbl_usuario WHERE id_usuario = " . $cod . "";
@@ -50,17 +56,9 @@ if (isset($modo)) {
             $status = $rs['status'];
         }
 
-        if($sexo == 'f'){
-            $chkFem = "checked";
-        }else if($sexo == 'm'){
-            $chkMasc = "checked";
-        }
+        ($sexo == 'f') ? $chkFem = "checked" : $chkMasc = "checked";
 
-        if($status == 1){
-            $chkOn = "checked";
-        }else if($status == 0){
-            $chkOff = "checked";
-        }
+        ($status == 1) ? $chkOn = "checked" : $chkOff = "checked";
     }
 }
 
@@ -78,22 +76,17 @@ if (isset($_POST['btn-cadastrar'])) {
             $senha = $_POST['txt-senha'];
             $nivel = $_POST['nivel'];
             $status = $_POST['status'];
-            
-            if ($status == '1') {
-                $status = 1;
-            } else if ($status == '0') {
-                $status = 0;
-            }
+
+            ($status == 1) ? $chkOn = "checked" : $chkOff = "checked";
 
             $sqlUpdate = "UPDATE tbl_usuario SET nome = '" . $nome . "', cpf = '" . $cpf . "', rg = '" . $rg . "', email = '" . $email . "', celular = '" . $celular . "', telefone = '" . $telefone . "', 
-            sexo = '" . $sexo . "', usuario = '" . $usuario . "', senha = '" . $senha . "', id_nivel = " . $nivel . ", status = ".$status." where id_usuario = " . $cod . "";
+            sexo = '" . $sexo . "', usuario = '" . $usuario . "', senha = '" . $senha . "', id_nivel = " . $nivel . ", status = " . $status . " where id_usuario = " . $cod . "";
 
-            if(mysqli_query($conexao, $sqlUpdate)){
+            if (mysqli_query($conexao, $sqlUpdate)) {
                 header('location:./controle_usuario.php');
-            }else{
+            } else {
                 echo 'não funfou';
             }
-
         }
     } else {
         $nome = $_POST['txt-nome'];
@@ -108,12 +101,7 @@ if (isset($_POST['btn-cadastrar'])) {
         $nivel = $_POST['nivel'];
         $status = $_POST['status'];
 
-        if ($status == '1') {
-            $status = 1;
-        } else if ($status == '0') {
-            $status = 0;
-        }
-
+        ($status == 1) ? $chkOn = "checked" : $chkOff = "checked";
 
         $sql = "INSERT INTO tbl_usuario (nome, cpf, rg, email, celular, telefone, sexo, 
         usuario, senha, id_nivel, status) VALUES('" . $nome . "', '" . $cpf . "', '" . $rg . "', '" . $email . "', '" . $celular . "', 
@@ -169,23 +157,23 @@ if (isset($_POST['btn-cadastrar'])) {
                 <input type="text" name="txt-usuario" value="<?php echo $usuario; ?>" id="" placeholder="Usuario">
                 <input type="password" name="txt-senha" value="<?php echo $senha; ?>" id="" placeholder="Senha">
                 <select name="nivel" id="">
-                    <?php 
-                    
+                    <?php
+
                     $sql = "select * from tbl_nivel where id_nivel > 1";
 
                     $select_all = mysqli_query($conexao, $sql);
 
-                    
+
                     while ($rs = mysqli_fetch_array($select_all)) {
 
-                        if($rs['status'] == 1){
+                        if ($rs['status'] == 1) {
 
-                        ?>
-                     <option value="<?= $rs['id_nivel'] ?>" <?= ($nivel == $rs['id_nivel']) ? 'selected' : '' ?>><?php echo $rs['nome_nivel'];?></option>
+                            ?>
+                            <option value="<?= $rs['id_nivel'] ?>" <?= ($nivel == $rs['id_nivel']) ? 'selected' : '' ?>><?php echo $rs['nome_nivel']; ?></option>
 
 
                         <?php } ?>
-                    <?php } ?> 
+                    <?php } ?>
                     ?>
                 </select>
                 <div class="rg-sexo">
