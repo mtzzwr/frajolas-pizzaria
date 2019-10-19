@@ -21,7 +21,7 @@ if ($rs = mysqli_fetch_array($select)) {
 }
 
 if ($status == 0) {
-    echo 'Seu usuário foi criado, porém ainda não está ativo';
+    echo '<script>alert("Sem permissão de acesso! Nivel ou usuário desativados"); window.history.go(-1)</script>';
 } else if ($status == 1) {
     if ($userdb == $usuario and $senhadb == $senha) {
         $_SESSION['login'] = $userdb;

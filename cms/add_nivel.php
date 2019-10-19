@@ -6,8 +6,8 @@ $conexao = conexaoMysql();
 $cod = null;
 $modo = null;
 
-$cod = $_GET['codigo'];
-$modo = $_GET['modo'];
+$cod = @$_GET['codigo'];
+$modo = @$_GET['modo'];
 
 $btn = 'Cadastrar';
 

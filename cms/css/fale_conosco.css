@@ -40,10 +40,18 @@
     padding: 1%;
 }
 
-.modal header {
+.modal #nome {
     width: 100%;
-    height: 80px;
-    color: #1b1e24;
+    min-height: 80px;
+    height: auto;
+    color: #fff;
+    background-color: #6e0101;
+    text-align: center;
+}
+
+.modal hr {
+    background-color: #1b1e24;
+    margin-top: 10px;
 }
 
 .conteudo-modal {
