@@ -14,6 +14,10 @@ $conexao = conexaoMysql();
 $cod = @$_GET['codigo'];
 $modo = @$_GET['modo'];
 
+if (isset($_POST['btn-filtrar'])) {
+    $filtro = $_POST['filtro-contato'];
+}
+
 if (isset($modo)) {
     if ($modo == 'deletar') {
         $sql = "DELETE FROM tbl_contato WHERE id = '" . $cod . "'";
@@ -22,6 +26,8 @@ if (isset($modo)) {
         else echo 'erro ao excluir';
     }
 }
+
+
 
 
 ?>
@@ -101,63 +107,35 @@ if (isset($modo)) {
 
                     <?php
 
-                    if (isset($_POST['btn-filtrar'])) {
-                        $filtro = $_POST['filtro-contato'];
+                    $sql = "select * from tbl_contato order by id desc";
 
-                        if ($filtro == 'todos') {
-                            $sql = "select * from tbl_contato order by id desc";
-                        } else if ($filtro == 'sugestao' || $filtro == 'critica') {
-                            $sql =  "select * from tbl_contato where tipo_mensagem = '" . $filtro . "' order by id desc";
-                        }
+                    if ($filtro == 'todos') {
+                        $sql = "select * from tbl_contato order by id desc";
+                    } else if ($filtro == 'sugestao' || $filtro == 'critica') {
+                        $sql =  "select * from tbl_contato where tipo_mensagem = '" . $filtro . "' order by id desc";
+                    }
 
-                        $select = mysqli_query($conexao, $sql);
+                    $select = mysqli_query($conexao, $sql);
 
-                        while ($rs = mysqli_fetch_array($select)) {
+                    while ($rs = mysqli_fetch_array($select)) {
 
-                            ?>
+                        ?>
 
-                            <tr>
-                                <td><?php echo $rs['nome']; ?></td>
-                                <td><?php echo $rs['email']; ?></td>
-                                <td><?php echo $rs['celular']; ?></td>
-                                <td><?php echo $rs['tipo_mensagem']; ?></td>
-                                <td>
-                                    <a onclick="modalDados(<?= $rs['id']; ?>);" class="btn-visualizar" href="#"><img src="./images/lupa.png" alt=""></a>
-                                    <a onclick="return confirm('Deseja realmente excluir o contato?');" href="./db/excluirContato.php?codigo=<?= $rs['id'] ?>"><img src="./images/delete.png" alt=""></a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td><?php echo $rs['nome']; ?></td>
+                            <td><?php echo $rs['email']; ?></td>
+                            <td><?php echo $rs['celular']; ?></td>
+                            <td><?php echo $rs['tipo_mensagem']; ?></td>
+                            <td>
+                                <a onclick="modalDados(<?= $rs['id']; ?>);" class="btn-visualizar" href="#"><img src="./images/lupa.png" alt=""></a>
+                                <a onclick="return confirm('Deseja realmente excluir o contato?');" href="./db/excluirContato.php?codigo=<?= $rs['id'] ?>"><img src="./images/delete.png" alt=""></a>
+                            </td>
+                        </tr>
 
-                        <?php
-                            }
-                            ?>
-                        <?php
-                        } else {
-                            $sql = "select * from tbl_contato order by id desc";
-
-                            $select = mysqli_query($conexao, $sql);
-
-                            while ($rs = mysqli_fetch_array($select)) {
-                                ?>
-
-                            <tr>
-                                <td><?php echo $rs['nome']; ?></td>
-                                <td><?php echo $rs['email']; ?></td>
-                                <td><?php echo $rs['celular']; ?></td>
-                                <td><?php echo $rs['tipo_mensagem']; ?></td>
-                                <td>
-                                    <a onclick="modalDados(<?= $rs['id']; ?>);" class="btn-visualizar" href="#"><img src="./images/lupa.png" alt=""></a>
-                                    <a onclick="return confirm('Deseja realmente excluir o contato?');" href="./adm_fale_conosco.php?modo=deletar&codigo=<?= $rs['id'] ?>"><img src="./images/delete.png" alt=""></a>
-                                </td>
-                            </tr>
-
-                        <?php
-                            }
-
-
-                            ?>
                     <?php
                     }
                     ?>
+
 
                 </tbody>
             </table>
