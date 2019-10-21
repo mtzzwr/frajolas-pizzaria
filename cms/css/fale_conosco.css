@@ -92,6 +92,7 @@ form select {
     width: 200px;
     height: 38px;
     justify-content: left;
+    margin-bottom: 3%;
 }
 
 input[type='submit'] {

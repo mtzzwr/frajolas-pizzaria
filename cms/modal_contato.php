@@ -5,7 +5,7 @@ if(isset($_POST['modo'])){
 
         $cod = $_POST['codigo'];
 
-        require_once '../../db/conexao.php';
+        require_once '../db/conexao.php';
         $conexao = conexaoMysql();
 
         $sql = "SELECT * FROM tbl_contato WHERE id = ".$cod;

@@ -6,6 +6,8 @@ $conexao = conexaoMysql();
 $usuario = $_POST['txtUsuarioCms'];
 $senha = $_POST['txtSenhaCms'];
 
+$status = 0;
+
 $sql = "select tbl_usuario.*, tbl_nivel.* from tbl_usuario inner join tbl_nivel 
     on tbl_usuario.id_nivel = tbl_nivel.id_nivel 
     where tbl_usuario.status = 1 and tbl_usuario.usuario = '" . $usuario . "' and tbl_usuario.senha = '" . $senha . "' and 

@@ -3,6 +3,7 @@
 require_once('../db/conexao.php');
 $conexao = conexaoMysql();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +46,6 @@ $conexao = conexaoMysql();
                                 <td><?php echo $rs['descricao_nivel']; ?></td>
                                 <td>
                                     <a href="./add_nivel.php?modo=editar&codigo=<?= $rs['id_nivel']; ?>" class="btn-editar"><img src="./images/pen.png" alt=""></a>
-                                    <a onclick="return confirm('Deseja realmente deletar o usuário?')"><img src="./images/delete.png" alt=""></a>
                                 </td>
                                 <td><?php if ($rs['status'] == 1) {
 

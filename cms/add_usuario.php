@@ -27,6 +27,7 @@ $status = null;
 $chkOn = null;
 $chkOff = null;
 
+
 if (isset($modo)) {
     if ($modo == 'deletar') {
         $sql = "DELETE FROM tbl_usuario WHERE id_usuario = " . $cod . "";
@@ -81,7 +82,7 @@ if (isset($_POST['btn-cadastrar'])) {
 
             $sqlUpdate = "UPDATE tbl_usuario SET nome = '" . $nome . "', cpf = '" . $cpf . "', rg = '" . $rg . "', email = '" . $email . "', celular = '" . $celular . "', telefone = '" . $telefone . "', 
             sexo = '" . $sexo . "', usuario = '" . $usuario . "', senha = '" . $senha . "', id_nivel = " . $nivel . ", status = " . $status . " where id_usuario = " . $cod . "";
-
+            
             if (mysqli_query($conexao, $sqlUpdate)) {
                 header('location:./controle_usuario.php');
             } else {

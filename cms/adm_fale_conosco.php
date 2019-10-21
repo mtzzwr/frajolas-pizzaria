@@ -60,7 +60,7 @@ if (isset($modo)) {
         modalDados = (idItem) => {
             $.ajax({
                 type: "POST",
-                url: "./db/modalContato.php",
+                url: "./modal_contato.php",
                 data: {
                     modo: 'visualizar',
                     codigo: idItem

@@ -144,7 +144,7 @@ if (isset($_POST['btn-cadastrar'])) {
         }
 
 
-        $sql = "INSERT INTO tbl_nivel VALUES (null, '" . $nome . "', '" . $desc . "', " . $chkConteudo . ", " . $chkFaleConosco . ", " . $chkUsuario . ", " . $status . ")";
+        $sql = "INSERT INTO tbl_nivel VALUES (null, '" . $nome . "', '" . $desc . "', " . $chkConteudo . ", " . $chkFaleConosco . ", " . $chkUsuario . ", " . $status . ", null)";
 
         if (mysqli_query($conexao, $sql)) echo 'funfou';
         else echo $sql;
