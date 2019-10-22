@@ -28,8 +28,6 @@ if (isset($modo)) {
 }
 
 
-
-
 ?>
 
 <!DOCTYPE html>
