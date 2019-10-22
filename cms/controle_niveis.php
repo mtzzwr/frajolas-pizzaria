@@ -22,7 +22,7 @@ $conexao = conexaoMysql();
     <?php include './include/header.php'; ?>
     <section class="conteudo-principal">
         <div class="conteudo">
-            <h1>Controle de Usuários</h1>
+            <h1>Controle de Niveis</h1>
             <div class="add-user">
                 <a href="add_nivel.php">Adicionar novo nivel</a>
             </div>
