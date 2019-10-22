@@ -109,12 +109,9 @@ if (isset($modo)) {
 
                     $sql = "select * from tbl_contato order by id desc";
 
-                    if ($filtro == 'todos') {
-                        $sql = "select * from tbl_contato order by id desc";
-                    } else if ($filtro == 'sugestao' || $filtro == 'critica') {
-                        $sql =  "select * from tbl_contato where tipo_mensagem = '" . $filtro . "' order by id desc";
-                    }
-
+                    if ($filtro == 'sugestao' || $filtro == 'critica')
+                    $sql =  "select * from tbl_contato where tipo_mensagem = '" . $filtro . "' order by id desc";
+                    
                     $select = mysqli_query($conexao, $sql);
 
                     while ($rs = mysqli_fetch_array($select)) {
