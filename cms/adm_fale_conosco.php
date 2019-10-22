@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(E_ALL ^ E_NOTICE);
-
 session_start();
 
 $_SESSION['filtro'] = $_POST['filtro-contato'];
@@ -11,8 +9,11 @@ $tipo_mensagem = null;
 require_once('../db/conexao.php');
 $conexao = conexaoMysql();
 
-$cod = @$_GET['codigo'];
-$modo = @$_GET['modo'];
+$cod = 0;
+$modo = null;
+
+$cod = $_GET['codigo'];
+$modo = $_GET['modo'];
 
 if (isset($_POST['btn-filtrar'])) {
     $filtro = $_POST['filtro-contato'];

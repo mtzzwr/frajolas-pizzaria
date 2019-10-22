@@ -3,8 +3,11 @@
 require_once('../db/conexao.php');
 $conexao = conexaoMysql();
 
-$cod = @$_GET['codigo'];
-$modo = @$_GET['modo'];
+$cod = 0;
+$modo = null;
+
+$cod = $_GET['codigo'];
+$modo = $_GET['modo'];
 
 $btn = 'Cadastrar';
 
