@@ -146,7 +146,7 @@ if (isset($_POST['btn-cadastrar'])) {
 
         $sql = "INSERT INTO tbl_nivel VALUES (null, '" . $nome . "', '" . $desc . "', " . $chkConteudo . ", " . $chkFaleConosco . ", " . $chkUsuario . ", " . $status . ")";
 
-        if (mysqli_query($conexao, $sql)) echo 'funfou';
+        if (mysqli_query($conexao, $sql)) header('location:./controle_niveis.php');
         else echo $sql;
     }
 }

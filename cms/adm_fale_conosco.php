@@ -1,9 +1,5 @@
 <?php
 
-session_start();
-
-$_SESSION['filtro'] = $_POST['filtro-contato'];
-
 $tipo_mensagem = null;
 
 require_once('../db/conexao.php');
@@ -12,8 +8,10 @@ $conexao = conexaoMysql();
 $cod = 0;
 $modo = null;
 
-$cod = $_GET['codigo'];
-$modo = $_GET['modo'];
+$cod = @$_GET['codigo'];
+$modo = @$_GET['modo'];
+
+$filtro = null;
 
 if (isset($_POST['btn-filtrar'])) {
     $filtro = $_POST['filtro-contato'];
@@ -90,9 +88,9 @@ if (isset($modo)) {
         <div class="conteudo-contato">
             <form action="" method="post">
                 <select name="filtro-contato" id="">
-                    <option value="todos" <?= ($_SESSION['filtro'] == 'todos') ? 'selected' : '' ?>>Todos</option>
-                    <option value="sugestao" <?= ($_SESSION['filtro'] == 'sugestao') ? 'selected' : '' ?>>Sugestão</option>
-                    <option value="critica" <?= ($_SESSION['filtro'] == 'critica') ? 'selected' : '' ?>>Critica</option>
+                    <option value="todos" <?= ($filtro == 'todos') ? 'selected' : '' ?>>Todos</option>
+                    <option value="sugestao" <?= ($filtro == 'sugestao') ? 'selected' : '' ?>>Sugestão</option>
+                    <option value="critica" <?= ($filtro == 'critica') ? 'selected' : '' ?>>Critica</option>
                 </select>
                 <input type="submit" name="btn-filtrar" value="Filtrar">
             </form>
