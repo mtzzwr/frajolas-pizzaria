@@ -13,7 +13,7 @@ $conexao = conexaoMysql();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="./js/jquery-3.4.1.js"></script>
+    <script src="./cms/js/jquery-3.4.1.js"></script>
     <script src="./js/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/contato.css">

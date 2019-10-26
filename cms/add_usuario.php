@@ -3,12 +3,6 @@
 require_once('../db/conexao.php');
 $conexao = conexaoMysql();
 
-$cod = 0;
-$modo = null;
-
-$cod = $_GET['codigo'];
-$modo = $_GET['modo'];
-
 $btn = 'Cadastrar';
 
 $chkFem = null;
@@ -21,15 +15,19 @@ $email = null;
 $celular = null;
 $telefone = null;
 $sexo = null;
-$usuario = null;
+$usuario = (string) null;
 $senha = null;
 $nivel = null;
 $status = null;
 
-
 $chkOn = null;
 $chkOff = null;
 
+$cod = 0;
+$modo = null;
+
+$cod = @$_GET['codigo'];
+$modo = @$_GET['modo']; 
 
 if (isset($modo)) {
     if ($modo == 'deletar') {
@@ -105,6 +103,11 @@ if (isset($_POST['btn-cadastrar'])) {
         $nivel = $_POST['nivel'];
         $status = $_POST['status'];
 
+        $cpf = preg_replace("/\D+/", "", $cpf);
+        $rg = preg_replace("/\D+/", "", $rg);
+        $celular = preg_replace("/\D+/", "", $celular);
+        $telefone = preg_replace("/\D+/", "", $telefone);
+
         ($status == 1) ? $chkOn = "checked" : $chkOff = "checked";
 
         $sql = "INSERT INTO tbl_usuario (nome, cpf, rg, email, celular, telefone, sexo, 
@@ -138,7 +141,9 @@ if (isset($_POST['btn-cadastrar'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/adm_usuario.css">
-    <script src="../js/jquery-validate/dist/jquery.validate.js"></script>
+    <script src="./js/jquery-3.4.1.js" type="text/javascript"></script>
+    <script src="../js/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>
+    <script src="./js/validacao.js"></script>
     <title>Adicionar Usuário</title>
 </head>
 
@@ -148,18 +153,18 @@ if (isset($_POST['btn-cadastrar'])) {
         <h1><?= $btn ?> Usuário</h1>
         <div class="container-form">
             <form class="form-template" action="" name="frm-cadastro-usuario" method="post">
-                <input type="text" name="txt-nome" value="<?php echo $nome; ?>" id="" placeholder="Nome">
-                <input type="text" name="txt-cpf" value="<?php echo $cpf; ?>" id="" placeholder="CPF">
-                <input type="text" name="txt-rg" value="<?php echo $rg; ?>" id="" placeholder="RG">
-                <input type="text" name="txt-email" value="<?php echo $email; ?>" id="" placeholder="Email">
-                <input type="text" name="txt-celular" value="<?php echo $celular; ?>" id="" placeholder="Celular">
-                <input type="text" name="txt-telefone" value="<?php echo $telefone; ?>" id="" placeholder="Telefone">
+                <input required type="text" name="txt-nome" value="<?php echo $nome; ?>" id="txt-nome" placeholder="Nome">
+                <input required type="text" name="txt-cpf" value="<?php echo $cpf; ?>" id="txt-cpf" placeholder="CPF">
+                <input type="text" name="txt-rg" value="<?php echo $rg; ?>" id="txt-rg" placeholder="RG">
+                <input required type="text" name="txt-email" value="<?php echo $email; ?>" id="" placeholder="Email">
+                <input required type="text" name="txt-celular" value="<?php echo $celular; ?>" id="txt-celular" placeholder="Celular">
+                <input type="text" name="txt-telefone" value="<?php echo $telefone; ?>" id="txt-telefone" placeholder="Telefone">
                 <div class="rg-sexo">
                     <input type="radio" name="sexo" <?= $chkFem ?> value="f" id="" checked>Feminino
                     <input type="radio" name="sexo" <?= $chkMasc ?> value="m" id="">Masculino
                 </div>
-                <input type="text" name="txt-usuario" value="<?php echo $usuario; ?>" id="" placeholder="Usuario">
-                <input type="password" name="txt-senha" value="<?php echo $senha; ?>" id="" placeholder="Senha">
+                <input required type="text" name="txt-usuario" value="<?php echo $usuario; ?>" id="" placeholder="Usuario">
+                <input required type="password" name="txt-senha" value="<?php echo $senha; ?>" id="" placeholder="Senha">
                 <select name="nivel" id="">
                     <?php
 

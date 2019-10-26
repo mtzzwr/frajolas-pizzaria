@@ -42,6 +42,14 @@ if($_SESSION['login'] != $usuario and $_SESSION['senha'] != $senha){
     header('location:./cms/home.php');
 }
 
+
+// if($_SESSION['login'] == $usuario and $_SESSION['senha'] == $senha){
+//     header('location:./cms/home.php');
+// }else{
+//     echo '<script>alert("Usuário ou senha incorretos"); window.history.go(-1)</script>';
+// }
+
+
 // if ($status == 0) {
 //     echo '<script>alert("Sem permissão de acesso! Nivel ou usuário desativados"); window.history.go(-1)</script>';
 // } else if ($status == 1) {
