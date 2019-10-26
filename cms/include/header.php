@@ -17,7 +17,7 @@ $logado = $_SESSION['login'];
 
 $id_nivel = $_SESSION['idNivel'];
 
-$status = $_SESSION['status'];
+$status = $_SESSION['status_usuario'];
 
 if($_SESSION['idNivel'] != 0){
 
