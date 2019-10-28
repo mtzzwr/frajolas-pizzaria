@@ -18,7 +18,19 @@ $conexao = conexaoMysql();
 </head>
 
 <body>
-    <?php include './include/header.php'; ?>
+    <?php include_once './include/header.php';
+        $id_nivel = $_SESSION['idNivel'];
+
+        $sql = "SELECT * FROM tbl_nivel WHERE id_nivel = " . $id_nivel;
+
+        $select = mysqli_query($conexao, $sql);
+        $rs = mysqli_fetch_array($select);
+
+        $conteudo = $rs['adm_conteudo'];
+
+        if ($conteudo != 1) echo '<script>alert("Sem permissão"); window.history.go(-1)</script>'; 
+        
+    ?>
     <section class="conteudo-principal">
         <h1>Páginas de conteúdo</h1>
         <div class="row">

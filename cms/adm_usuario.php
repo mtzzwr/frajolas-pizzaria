@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-
+require_once('../db/conexao.php');
+$conexao = conexaoMysql();
 
 ?>
 
@@ -17,7 +18,20 @@
 </head>
 
 <body>
-    <?php include './include/header.php'; ?>
+    <?php include_once './include/header.php';
+
+        $id_nivel = $_SESSION['idNivel'];
+
+        $sql = "SELECT * FROM tbl_nivel WHERE id_nivel = " . $id_nivel;
+
+        $select = mysqli_query($conexao, $sql);
+        $rs = mysqli_fetch_array($select);
+
+        $usuario = $rs['adm_usuario'];
+
+        if ($usuario != 1) echo '<script>alert("Sem permissão"); window.history.go(-1)</script>';
+
+    ?>
     <section class="conteudo-principal row">
         <h1>Controle de usuários e niveís de acesso</h1>
         <div class="row">

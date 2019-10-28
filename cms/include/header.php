@@ -1,6 +1,5 @@
 <?php
 
-
 session_start();
 
 if((!isset($_SESSION['login']) == true)){
@@ -30,16 +29,14 @@ if($_SESSION['idNivel'] != 0){
     $faleConosco = $rs['adm_fale_conosco'];
     $usuario = $rs['adm_usuario'];
 
-    if($conteudo == 1) echo '';
-    else echo '<style>#adm-conteudo {pointer-events: none; opacity: 0.3;}; </style>';
+    if($conteudo != 1) echo '<style>#adm-conteudo {pointer-events: none; opacity: 0.3;}; </style>';
 
-    if($faleConosco == 1) echo '';
-    else echo '<style>#adm-fale-conosco {pointer-events: none; opacity: 0.3;}; </style>';
+    if($faleConosco != 1) echo '<style>#adm-fale-conosco {pointer-events: none; opacity: 0.3;}; </style>';
     
-    if($usuario == 1)echo '';
-    else echo '<style>#adm-usuario {pointer-events: none; opacity: 0.3;}; </style>';
-
+    if($usuario != 1) echo '<style>#adm-usuario {pointer-events: none; opacity: 0.3;}; </style>';
+    
 }
+
 
 ?>
 

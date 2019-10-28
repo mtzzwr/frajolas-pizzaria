@@ -82,7 +82,20 @@ if (isset($modo)) {
             </div>
         </div>
     </div>
-    <?php include './include/header.php'; ?>
+    <?php include_once './include/header.php';
+
+        $id_nivel = $_SESSION['idNivel'];
+
+        $sql = "SELECT * FROM tbl_nivel WHERE id_nivel = " . $id_nivel;
+
+        $select = mysqli_query($conexao, $sql);
+        $rs = mysqli_fetch_array($select);
+
+        $faleConosco = $rs['adm_fale_conosco'];
+
+        if ($faleConosco != 1) echo '<script>alert("Sem permissão"); window.history.go(-1)</script>';
+
+    ?>
     <section class="conteudo-principal">
         <h1>Contatos</h1>
         <div class="conteudo-contato">
@@ -107,8 +120,8 @@ if (isset($modo)) {
                     $sql = "select * from tbl_contato order by id desc";
 
                     if ($filtro == 'sugestao' || $filtro == 'critica')
-                    $sql =  "select * from tbl_contato where tipo_mensagem = '" . $filtro . "' order by id desc";
-                    
+                        $sql =  "select * from tbl_contato where tipo_mensagem = '" . $filtro . "' order by id desc";
+
                     $select = mysqli_query($conexao, $sql);
 
                     while ($rs = mysqli_fetch_array($select)) {
