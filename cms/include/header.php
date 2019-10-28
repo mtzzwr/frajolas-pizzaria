@@ -45,7 +45,7 @@ if($_SESSION['idNivel'] != 0){
         <span>CMS - Sistema de Gerenciamento do Site</span>
     </div>
     <div class="img-cms background-css">
-        <img src="./images/cms-logo.png" alt="">
+        <a href="home.php"><img src="./images/cms-logo.png" alt=""></a>
     </div>
 </header>
 <section class="menu-cms">

@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Play&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Play', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-size: 100%;
 }
 

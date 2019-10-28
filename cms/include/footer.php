@@ -1,3 +1,3 @@
 <footer>
-    Desenvolvido por: eu mesmo
+    Desenvolvido por: Mateus Gonçalves
 </footer>
