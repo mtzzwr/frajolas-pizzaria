@@ -102,6 +102,8 @@ if (isset($_POST['btn-cadastrar'])) {
                 $chkUsuario = 0;
             }
 
+            if($chkConteudo == 0 and $chkFaleConosco == 0 and $chkUsuario == 0) echo 'Selecione pelo menos uma permissão';
+
             $sql = "UPDATE tbl_nivel SET nome_nivel = '".$nome."', descricao_nivel = '".$desc."', adm_conteudo = ".$chkConteudo.", 
             adm_fale_conosco = ".$chkFaleConosco.", adm_usuario = ".$chkUsuario.", status = ".$status." WHERE id_nivel = ".$cod;
 
@@ -143,6 +145,7 @@ if (isset($_POST['btn-cadastrar'])) {
             $chkUsuario = 0;
         }
 
+        if($chkConteudo == 0 and $chkFaleConosco == 0 and $chkUsuario == 0) echo 'Selecione pelo menos uma permissão';
 
         $sql = "INSERT INTO tbl_nivel VALUES (null, '" . $nome . "', '" . $desc . "', " . $chkConteudo . ", " . $chkFaleConosco . ", " . $chkUsuario . ", " . $status . ")";
 
@@ -150,9 +153,6 @@ if (isset($_POST['btn-cadastrar'])) {
         else echo $sql;
     }
 }
-
-
-
 
 
 ?>
@@ -167,6 +167,9 @@ if (isset($_POST['btn-cadastrar'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/adm_usuario.css">
+    <script src="./js/jquery-3.4.1.js" type="text/javascript"></script>
+        <script src="../js/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>
+    <script src="./js/validacao.js"></script>
     <title>Adicionar novo nivel</title>
 </head>
 
@@ -180,15 +183,15 @@ if (isset($_POST['btn-cadastrar'])) {
                 <textarea name="txt-desc" id="" cols="30" rows="10" placeholder="Descrição do nivel"><?= $desc ?></textarea>
                 <div class="rg-sexo">
                     Selecione as permissões <br>
-                    <input type="checkbox" name="chk-conteudo" <?= $conteudoChk ?> value="1" id="">Conteúdo
-                    <input type="checkbox" name="chk-fale-conosco" <?= $faleConoscoChk ?> value="1" id="">Fale conosco
-                    <input type="checkbox" name="chk-usuario" <?= $usuarioChk ?> value="1" id="">Usuário
+                    <input type="checkbox" id="chk-conteudo" name="chk-conteudo" <?= $conteudoChk ?> value="1" id="">Conteúdo
+                    <input type="checkbox" id="chk-fale-conosco" name="chk-fale-conosco" <?= $faleConoscoChk ?> value="1" id="">Fale conosco
+                    <input type="checkbox" id="chk-usuario" name="chk-usuario" <?= $usuarioChk ?> value="1" id="">Usuário
                 </div>
                 <div class="rg-sexo">
                     <input type="radio" name="status" <?= $chkOn ?> value="1" id="">Online
                     <input type="radio" name="status" <?= $chkOff ?> value="0" id="">Offline
                 </div>
-                <input type="submit" name="btn-cadastrar" value="<?= $btn ?>">
+                <input type="submit" id="btn-cadastrar" name="btn-cadastrar" value="<?= $btn ?>">
             </form>
         </div>
     </section>

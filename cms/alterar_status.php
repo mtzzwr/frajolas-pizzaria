@@ -7,9 +7,9 @@ $alterar = null;
 $cod = 0;
 $st = 0;
 
-$alterar = @$_GET['alterar'];
-$cod = @$_GET['codigo'];
-$st = @$_GET['status'];
+$alterar = $_GET['alterar'];
+$cod = $_GET['codigo'];
+$st = $_GET['status'];
 
 if (isset($alterar)) {
     if ($alterar == 'usuario') {
