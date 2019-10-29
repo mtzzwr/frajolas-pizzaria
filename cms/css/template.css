@@ -183,7 +183,7 @@ table td {
     vertical-align:middle;
     font-weight:300;
     font-size:18px;
-    min-width: 230px;
+    min-width: 260px;
     width: auto;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
     border-right: 1px solid #C1C3D1;
@@ -221,4 +221,110 @@ table td a {
 
 .conteudo h1 {
     margin: auto;
+}
+
+
+.container-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    z-index: 999;
+    display: none;
+}
+  
+.container-modal .modal {
+    width: 600px;
+    height: 700px;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 8vh;
+    padding: 20px;
+    overflow: auto;
+}
+  
+.container-modal a {
+    width: 300px;
+    float: right;
+    border: 1px solid black;
+    background-color: #1b1e24;
+    color: white;
+    width: 100px;
+    height: 34px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 20px 0px 20px 0px;
+}
+
+#close {
+    width: 100%;
+    height: 36px;
+    background-color: #6e0101;
+    color: #ffffff;
+    padding: 1%;
+}
+
+.modal #nome {
+    width: 100%;
+    min-height: 80px;
+    height: auto;
+    color: #fff;
+    background-color: #6e0101;
+    text-align: center;
+}
+
+.modal hr {
+    background-color: #1b1e24;
+    margin-top: 10px;
+}
+
+.conteudo-modal {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6em;
+}
+
+.conteudo-modal #nome {
+    width: 100%;
+    min-height: 50px;
+    height: auto;
+}
+
+.row-modal {
+    margin-top: 10px;
+}
+
+.img-modal {
+    margin-top: 30px;
+}
+
+.txt-preenchido {
+    color: #9ea7af;
+    font-size: 1em;
+}
+
+.conteudo form, table {
+    margin: auto;
+}
+
+.conteudo form {
+    width: 1150px;
+    height: 100px;
+}
+
+form select {
+    width: 200px;
+    height: 38px;
+    justify-content: left;
+    margin-bottom: 3%;
+}
+
+input[type='submit'] {
+    width: 100px;
+    height: 38px;
+    background-color: #6e0101;
+    color: #ffffff;
+    border: 0px;
+    cursor: pointer;
 }

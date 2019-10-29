@@ -18,17 +18,6 @@ if (isset($alterar)) {
         $select_all = mysqli_query($conexao, $sql);
 
         while ($rs = mysqli_fetch_array($select_all)) {
-
-            $nome = $rs['nome'];
-            $cpf = $rs['cpf'];
-            $rg = $rs['rg'];
-            $email = $rs['email'];
-            $celular = $rs['celular'];
-            $telefone = $rs['telefone'];
-            $sexo = $rs['sexo'];
-            $usuario = $rs['usuario'];
-            $senha = $rs['senha'];
-            $idNivel = $rs['id_nivel'];
             $status = $rs['status'];
         }
 
@@ -56,12 +45,6 @@ if (isset($alterar)) {
         $select_all = mysqli_query($conexao, $sql);
 
         while ($rs = mysqli_fetch_array($select_all)) {
-            $idNivel = $rs['id_nivel'];
-            $nomeNivel = $rs['nome_nivel'];
-            $descNivel = $rs['descricao_nivel'];
-            $admConteudo = $rs['adm_conteudo'];
-            $admFaleConosco = $rs['adm_fale_conosco'];
-            $admUsuario = $rs['adm_usuario'];
             $status = $rs['status'];
         }
 
