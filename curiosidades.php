@@ -1,3 +1,11 @@
+<?php
+
+require_once('./db/conexao.php');
+$conexao = conexaoMysql();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,6 +87,31 @@
                 </article>
             </div>
         </div>
+        <?php
+
+        $sql = "select * from tbl_curiosidade";
+
+        $select = mysqli_query($conexao, $sql);
+
+        while ($rs = mysqli_fetch_array($select)) {
+            ?>
+
+            <div id="pizza-chiclete" class="produto-curiosidade">
+                <div class="img-produto-curiosidade">
+                    <img src="cms\db\files\<?=$rs['imagem_curiosidade']?>" alt="" width="600px" height="350px">
+                </div>
+                <div class="txt-produto-curiosidade">
+                    <article>
+                        <h2><?= $rs['titulo_curiosidade'] ?></h2>
+                        <?= $rs['desc_curiosidade'] ?>
+                    </article>
+                </div>
+            </div>
+
+        <?php
+        }
+
+        ?>
         <footer>
             <a class="btn-sistema" href="#">Sistema Interno</a>
             <div class="endereco">

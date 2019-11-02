@@ -1,6 +1,25 @@
 <?php
 
+require_once('../db/conexao.php');
+$conexao = conexaoMysql();
 
+if(isset($_POST['btn-cadastrar'])){
+    require_once './db/upload_imagem.php';
+
+    $titulo = $_POST['txt-titulo'];
+    $desc = $_POST['txt-desc'];
+
+    $file_name = basename($_FILES['foto']['name']);
+    $image_name = uploadImagem($file_name);
+
+    $sql = "insert into tbl_curiosidade values(null, '".$image_name."', '".$titulo."', '".$desc."')";
+
+    if(mysqli_query($conexao, $sql)){
+        echo 'funfou';
+    }else{
+        echo $sql;
+    }
+}
 
 ?>
 
@@ -23,9 +42,12 @@
         <form class="form-template" action="" method="post" enctype="multipart/form-data">
             Escolha uma imagem
             <label id="thumbnail">
-                <input type="file" />
+                <input type="file" name="foto">
                 <img src="./images/camera.png" alt="Select img" />
             </label>
+            <input type="text" name="txt-titulo" id="" placeholder="Titulo da curiosidade">
+            <textarea name="txt-desc" placeholder="Descrição da curiosidade" id="" cols="30" rows="10"></textarea>
+            <input type="submit" name="btn-cadastrar" value="Cadastrar">
         </form>
     </section>
     <?php include './include/footer.php'; ?>

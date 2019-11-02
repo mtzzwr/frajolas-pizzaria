@@ -2,7 +2,7 @@
 
 function uploadImagem($file_name){
     
-    $dir = (string) 'files/';
+    $dir = (string) 'db/files/';
     $max_file_size = (int) 1000;
     $accepted_files = array('image/jpeg', 'image/png', 'image/jpg');
 
