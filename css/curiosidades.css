@@ -1,11 +1,12 @@
 #container-curiosidades {
     margin-top: 90px;
     margin: auto;
+    width: 1600px;
 }
 
 #container-curiosidades .txt-curiosidade {
     height: auto;
-    width: 100%;
+    width: 90%;
     text-align: center;
     font-size: 2em;
     margin: auto;

@@ -150,7 +150,7 @@ form input[type="submit"]:hover{
 .container {
     display: flex;
     flex-direction: column;
-    width: 1460px;
+    width: 1600px;
     height: auto;
     margin: auto;
 }
