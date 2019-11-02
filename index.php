@@ -221,6 +221,74 @@ if(isset($_POST['btnEntrarCms'])){
                         <a href="#">Detalhes</a>
                     </div>
                 </div>
+                <div class="card-produto">
+                    <div class="img-produto">
+                        <img src="./images/pizza-img.jpg" alt="Pizza">
+                    </div>
+                    <div class="nome-produto">
+                        Pizza
+                    </div>
+                    <div class="descricao-produto">
+                        Pizza aleatória Pizza aleatória Pizza aleatória
+                    </div>
+                    <div class="preco-produto">
+                        R$ 32,00
+                    </div>
+                    <div class="btn-detalhes">
+                        <a href="#">Detalhes</a>
+                    </div>
+                </div>
+                <div class="card-produto">
+                    <div class="img-produto">
+                        <img src="./images/pizza-img.jpg" alt="Pizza">
+                    </div>
+                    <div class="nome-produto">
+                        Pizza
+                    </div>
+                    <div class="descricao-produto">
+                        Pizza aleatória Pizza aleatória Pizza aleatória
+                    </div>
+                    <div class="preco-produto">
+                        R$ 32,00
+                    </div>
+                    <div class="btn-detalhes">
+                        <a href="#">Detalhes</a>
+                    </div>
+                </div>
+                <div class="card-produto">
+                    <div class="img-produto">
+                        <img src="./images/pizza-img.jpg" alt="Pizza">
+                    </div>
+                    <div class="nome-produto">
+                        Pizza
+                    </div>
+                    <div class="descricao-produto">
+                        Pizza aleatória Pizza aleatória Pizza aleatória
+                    </div>
+                    <div class="preco-produto">
+                        R$ 32,00
+                    </div>
+                    <div class="btn-detalhes">
+                        <a href="#">Detalhes</a>
+                    </div>
+                </div>
+                <div class="card-produto">
+                    <div class="img-produto">
+                        <img src="./images/pizza-img.jpg" alt="Pizza">
+                    </div>
+                    <div class="nome-produto">
+                        Pizza
+                    </div>
+                    <div class="descricao-produto">
+                        Pizza aleatória Pizza aleatória Pizza aleatória
+                    </div>
+                    <div class="preco-produto">
+                        R$ 32,00
+                    </div>
+                    <div class="btn-detalhes">
+                        <a href="#">Detalhes</a>
+                    </div>
+                </div>
             </div>
         </div>
         <footer>

@@ -1,6 +1,7 @@
 <?php
 
-
+require_once('../db/conexao.php');
+$conexao = conexaoMysql();
 
 ?>
 
@@ -18,8 +19,55 @@
 <body>
     <?php include './include/header.php'; ?>
     <section class="conteudo-principal">
-        <h1>Conteúdos da página Curiosidades</h1>
-        <a href="add_curiosidade.php">Nova Curiosidade</a>
+        <div class="conteudo">
+            <h1>Conteúdos da página Curiosidades</h1>
+            <a href="add_curiosidade.php">Nova Curiosidade</a>
+            <table>
+                <th>Titulo curiosidade</th>
+                <th>Descrição curiosidade</th>
+                <th>Status</th>
+                <th>Ações</th>
+                <tbody>
+                    <?php
+
+                    $sql = "select * from tbl_curiosidade";
+
+                    $select = mysqli_query($conexao, $sql);
+
+                    while ($rs = mysqli_fetch_array($select)) {
+
+                        ?>
+
+                        <tr>
+                            <td><?php echo $rs['titulo_curiosidade']; ?></td>
+                            <td><?php echo $rs['desc_curiosidade']; ?></td>
+                            <td><?php if ($rs['status'] == 1) {
+
+                                        ?>
+                                    <a href='alterar_status.php?alterar=curiosidade&status=<?= $rs['status'] ?>&codigo=<?= $rs['id_curiosidade']; ?>'><img src='./images/online.png' alt="Desativar" title="Desativar" /></a>
+
+                                <?php
+                                    } else if ($rs['status'] == 0) {
+
+                                        ?>
+                                    <a href='alterar_status.php?alterar=curiosidade&status=<?= $rs['status'] ?>&codigo=<?= $rs['id_curiosidade']; ?>'><img src='./images/offline.png' alt="Ativar" title="Ativar" /></a>
+
+                                <?php
+                                    } ?></td>
+                            <td>
+                                <a onclick="modalDados(<?= $rs['id_usuario']; ?>);" class="btn-visualizar" href="#"><img src="./images/lupa.png" alt=""></a>
+                                <a href="./add_usuario.php?modo=editar&codigo=<?= $rs['id_usuario']; ?>" class="btn-editar" href="#"><img src="./images/pen.png" alt=""></a>
+                                <a onclick="return confirm('Deseja realmente deletar o usuário?')" href="./add_usuario.php?modo=deletar&codigo=<?= $rs['id_usuario'] ?>"><img src="./images/delete.png" alt=""></a>
+                            </td>
+                        </tr>
+
+                    <?php
+                    }
+
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </section>
     <?php include './include/footer.php'; ?>
 </body>

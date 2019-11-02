@@ -65,5 +65,31 @@ if (isset($alterar)) {
                 echo 'erro';
             }
         }
+    }else if($alterar == 'curiosidade'){
+        $sql = "select * from tbl_curiosidade where id_curiosidade = " . $cod . "";
+
+        $select_all = mysqli_query($conexao, $sql);
+
+        while ($rs = mysqli_fetch_array($select_all)) {
+            $status = $rs['status'];
+        }
+
+        if($st == 0){
+            $sql = "UPDATE tbl_curiosidade SET status = 1 WHERE id_curiosidade = " . $cod . "";
+
+            if ($select = mysqli_query($conexao, $sql)) {
+                header('location:./conteudo_curiosidades.php');
+            } else {
+                echo 'erro';
+            }
+        }else if($st == 1){
+            $sql = "UPDATE tbl_curiosidade SET status = 0 WHERE id_curiosidade = " . $cod . "";
+
+            if ($select = mysqli_query($conexao, $sql)) {
+                header('location:./conteudo_curiosidades.php');
+            } else {
+                echo 'erro';
+            } 
+        }
     }
 }

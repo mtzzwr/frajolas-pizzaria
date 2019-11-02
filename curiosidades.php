@@ -89,7 +89,7 @@ $conexao = conexaoMysql();
         </div>
         <?php
 
-        $sql = "select * from tbl_curiosidade";
+        $sql = "select * from tbl_curiosidade where status <> 0";
 
         $select = mysqli_query($conexao, $sql);
 
@@ -98,7 +98,7 @@ $conexao = conexaoMysql();
 
             <div id="pizza-chiclete" class="produto-curiosidade">
                 <div class="img-produto-curiosidade">
-                    <img src="cms\db\files\<?=$rs['imagem_curiosidade']?>" alt="" width="600px" height="350px">
+                    <img src="cms\db\files\<?=$rs['imagem_curiosidade']?>" alt="" width="800px" height="430px">
                 </div>
                 <div class="txt-produto-curiosidade">
                     <article>

@@ -328,3 +328,13 @@ input[type='submit'] {
     border: 0px;
     cursor: pointer;
 }
+
+.conteudo a {
+    width: 200px;
+    height: 42px;
+    background-color: #6e0101;
+    color: #ffffff;
+    font-size: 1.1em;
+    text-decoration: none;
+    padding: 1%;
+}
