@@ -6,11 +6,11 @@ $conexao = conexaoMysql();
 $modo = null;
 $cod = 0;
 
-$modo = $_GET['modo'];
-$cod = $_GET['codigo'];
+$modo = @$_GET['modo'];
+$cod = @$_GET['codigo'];
 
-if(isset($modo)){
-    if($modo == 'deletar'){
+if (isset($modo)) {
+    if ($modo == 'deletar') {
         $sql = "DELETE FROM tbl_curiosidade WHERE id_curiosidade = " . $cod . "";
 
         if (mysqli_query($conexao, $sql))  header('location:./conteudo_curiosidades.php');
@@ -28,7 +28,7 @@ if (isset($_POST['btn-cadastrar'])) {
     $file_name = basename($_FILES['foto']['name']);
     $image_name = uploadImagem($file_name);
 
-    $sql = "insert into tbl_curiosidade values(null, '" . $image_name . "', '" . $titulo . "', '" . $desc . "', ".$status.")";
+    $sql = "insert into tbl_curiosidade values(null, '" . $image_name . "', '" . $titulo . "', '" . $desc . "', " . $status . ")";
 
     if (mysqli_query($conexao, $sql)) {
         echo 'funfou';
@@ -49,7 +49,7 @@ if (isset($_POST['btn-cadastrar'])) {
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/add_curiosidade.css">
     <script>
-        var loadFile = function(event){
+        var loadFile = function(event) {
             var output = document.getElementById('output');
             output.src = URL.createObjectURL(event.target.files[0]);
         }
@@ -61,21 +61,22 @@ if (isset($_POST['btn-cadastrar'])) {
     <?php include './include/header.php'; ?>
     <section class="conteudo-principal">
         <h1>Nova Curiosidade</h1>
-        <form class="form-template" action="" method="post" enctype="multipart/form-data">
-            Escolha uma imagem
-            <label id="thumbnail">
-                <input type="file" name="foto" onchange="loadFile(event)">
-                <img id="output">
-                <img src="./images/camera.png" alt="Select img" />
-            </label>
-            <input type="text" name="txt-titulo" id="" placeholder="Titulo da curiosidade">
-            <textarea name="txt-desc" placeholder="Descrição da curiosidade" id="" cols="30" rows="10"></textarea>
-            <div class="rg-sexo">
-                <input type="radio" name="status" value="1" id="" checked>Online
-                <input type="radio" name="status" value="0" id="">Offline
-            </div>
-            <input type="submit" name="btn-cadastrar" value="Cadastrar">
-        </form>
+        <div class="container-form">
+            <form class="form-template" id="form-curiosidade" action="" method="post" enctype="multipart/form-data">
+                <label id="thumbnail">
+                    <input type="file" name="foto" onchange="loadFile(event)">
+                    <img id="output">
+                    <img src="./images/camera.png" alt="Select img" />
+                </label>
+                <input type="text" name="txt-titulo" id="" placeholder="Titulo da curiosidade"> <br>
+                <textarea name="txt-desc" placeholder="Descrição da curiosidade" id="" cols="30" rows="10"></textarea>
+                <div class="rg-sexo">
+                    <input type="radio" name="status" value="1" id="" checked>Online
+                    <input type="radio" name="status" value="0" id="">Offline
+                </div>
+                <input type="submit" name="btn-cadastrar" value="Cadastrar">
+            </form>
+        </div>
     </section>
     <?php include './include/footer.php'; ?>
 </body>
