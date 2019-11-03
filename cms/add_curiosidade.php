@@ -3,6 +3,21 @@
 require_once('../db/conexao.php');
 $conexao = conexaoMysql();
 
+$modo = null;
+$cod = 0;
+
+$modo = $_GET['modo'];
+$cod = $_GET['codigo'];
+
+if(isset($modo)){
+    if($modo == 'deletar'){
+        $sql = "DELETE FROM tbl_curiosidade WHERE id_curiosidade = " . $cod . "";
+
+        if (mysqli_query($conexao, $sql))  header('location:./conteudo_curiosidades.php');
+        else echo 'erro ao excluir';
+    }
+}
+
 if (isset($_POST['btn-cadastrar'])) {
     require_once './db/upload_imagem.php';
 
