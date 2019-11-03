@@ -36,7 +36,6 @@ if (isset($alterar)) {
 
     if ($select = mysqli_query($conexao, $sql)) echo '<script>window.history.go(-1);</script>';
     else echo $sql;
-
 }
 
 

@@ -33,6 +33,12 @@ if (isset($_POST['btn-cadastrar'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/add_curiosidade.css">
+    <script>
+        var loadFile = function(event){
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
     <title>Adicionar Curiosidade - CMS</title>
 </head>
 
@@ -43,7 +49,8 @@ if (isset($_POST['btn-cadastrar'])) {
         <form class="form-template" action="" method="post" enctype="multipart/form-data">
             Escolha uma imagem
             <label id="thumbnail">
-                <input type="file" name="foto">
+                <input type="file" name="foto" onchange="loadFile(event)">
+                <img id="output">
                 <img src="./images/camera.png" alt="Select img" />
             </label>
             <input type="text" name="txt-titulo" id="" placeholder="Titulo da curiosidade">
