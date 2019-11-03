@@ -61,16 +61,6 @@ article {
     font-size: 2em;
 }
 
-#pizza-cone {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    grid-template-areas: 
-    "txt-produto-curiosidade img-produto-curiosidade";
-    grid-area: pizza-cone;
-    text-align: center;
-}
-
 #pizza-cone .txt-produto-curiosidade {
     width: 800px;
     font-size: 1.3em;
