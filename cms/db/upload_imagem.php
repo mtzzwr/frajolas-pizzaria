@@ -41,3 +41,10 @@ function uploadImagem($file_name){
         echo '<script>alert("Tipo do arquivo está vazio");</script>';
     }
 }
+
+// file == null ? update de todos os campos, menos a foto : update de todos os campos, com o upload da imagem
+// deletar arquivo antigo da pasta files - unlink
+// antes do header dar unlink no arquivo antigo
+// se salvar no banco a nova foto, apagar a antiga para não congestionar o banco - apagar depois de gravar no banco
+// if da exec da query, apagar o arquivo antigo depois que subir o novo
+// tanto no update quanto no delete deletar o arquivo anterior

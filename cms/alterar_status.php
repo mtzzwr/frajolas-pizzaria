@@ -21,6 +21,9 @@ if (isset($alterar)) {
     }else if($alterar == 'curiosidade'){
         $nome_tabela = 'tbl_curiosidade';
         $id_tabela = 'id_curiosidade';
+    }else if($alterar == 'diferencial'){
+        $nome_tabela = 'tbl_diferenciais';
+        $id_tabela = 'id_diferencial';
     }
 
     $sql = "SELECT * FROM ".$nome_tabela." WHERE ".$id_tabela." = ".$cod;

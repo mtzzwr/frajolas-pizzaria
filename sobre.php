@@ -1,3 +1,13 @@
+<?php
+
+require_once('./db/conexao.php');
+$conexao = conexaoMysql();
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,50 +66,29 @@
         </div>
         <hr>
         <div class="diferenciais">
-            <div class="card-diferenciais">
-                <a href="#"><img src="./images/startup.png" alt=""></a>
-                <div class="title">
-                    <h1>Processo</h1>
+            <?php
+
+            $sql = "SELECT * FROM tbl_diferenciais WHERE status <> 0";
+
+            $select = mysqli_query($conexao, $sql);
+
+            while ($rs = mysqli_fetch_array($select)) {
+                ?>
+
+                <div class="card-diferenciais">
+                    <a href="#"><img src="cms\db\files\<?=$rs['imagem_diferencial']?>" alt="" width="80px" height="80px"></a>
+                    <div class="title">
+                        <h1><?= $rs['titulo_diferencial'] ?></h1>
+                    </div>
+                    <div class="desc">
+                        <p><?= $rs['desc_diferencial'] ?><p>
+                    </div>
                 </div>
-                <div class="desc">
-                    <p> Utilizamos fornos de alta performance, com capacidade para produzir uma pizza
-                        a cada dois minutos, semelhante a ação calórica de um forno à lenha.
-                        <p>
-                </div>
-            </div>
-            <div class="card-diferenciais">
-                <a href="#"><img src="./images/pizzaa.png" alt=""></a>
-                <div class="title">
-                    <h1>Pizzas</h1>
-                </div>
-                <div class="desc">
-                    <p> Utilizamos fornos de alta performance, com capacidade para produzir uma pizza
-                        a cada dois minutos, semelhante a ação calórica de um forno à lenha.
-                        <p>
-                </div>
-            </div>
-            <div class="card-diferenciais">
-                <a href="#"><img src="./images/like.png" alt=""></a>
-                <div class="title">
-                    <h1>Aprovação</h1>
-                </div>
-                <div class="desc">
-                    <p> Utilizamos fornos de alta performance, com capacidade para produzir uma pizza
-                        a cada dois minutos, semelhante a ação calórica de um forno à lenha.
-                        <p>
-                </div>
-            </div>
-            <div class="card-diferenciais">
-                <a href="#"><img src="./images/group.png" alt=""></a>
-                <div class="title">
-                    <h1>Estrutura</h1>
-                </div>
-                <div class="desc">
-                    <p> Utilizamos fornos de alta performance, com capacidade para produzir uma pizza
-                        a cada dois minutos, semelhante a ação calórica de um forno à lenha.
-                        <p>
-                </div>
-            </div>
+
+            <?php
+            }
+
+            ?>
         </div>
         <footer>
             <a class="btn-sistema" href="#">Sistema Interno</a>

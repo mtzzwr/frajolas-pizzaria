@@ -45,48 +45,6 @@ $conexao = conexaoMysql();
             <span>Texto aleatório Texto aleatório Texto aleatório Texto aleatório</span>
         </div>
         <hr>
-        <div id="pizza-sushi" class="produto-curiosidade">
-            <div class="img-produto-curiosidade">
-                <img src="./images/sushi-pizza.jpg" alt="">
-            </div>
-            <div class="txt-produto-curiosidade">
-                <article>
-                    <h2>Pizza de Sushi</h2>
-                    Silvio Santos Ipsum ma o Silvio Santos Ipsum é muitoam interesanteam.
-                    Com ele ma você vai gerar textuans ha haae. Ha hai. Bem boladoam, bem boladoam.
-                    Bem gozadoam. Ma vale dérreaisam? Você veio da caravana de ondeammm? No duro?
-                    É bom ou não é? É dinheiro ou não é? No duro? É por sua conta e riscoamm?
-                </article>
-            </div>
-        </div>
-        <div id="pizza-cone" class="produto-curiosidade">
-            <div class="txt-produto-curiosidade">
-                <article>
-                    <h2>Pizza Cone</h2>
-                    Silvio Santos Ipsum ma o Silvio Santos Ipsum é muitoam interesanteam.
-                    Com ele ma você vai gerar textuans ha haae. Ha hai. Bem boladoam, bem boladoam.
-                    Bem gozadoam. Ma vale dérreaisam? Você veio da caravana de ondeammm? No duro?
-                    É bom ou não é? É dinheiro ou não é? No duro? É por sua conta e riscoamm?
-                </article>
-            </div>
-            <div class="img-produto-curiosidade">
-                <img src="./images/pizza-cone.jpg" alt="">
-            </div>
-        </div>
-        <div id="pizza-chiclete" class="produto-curiosidade">
-            <div class="img-produto-curiosidade">
-                <img src="./images/pizza-chiclete.jpg" alt="">
-            </div>
-            <div class="txt-produto-curiosidade">
-                <article>
-                    <h2>Pizza de Chiclete</h2>
-                    Silvio Santos Ipsum ma o Silvio Santos Ipsum é muitoam interesanteam.
-                    Com ele ma você vai gerar textuans ha haae. Ha hai. Bem boladoam, bem boladoam.
-                    Bem gozadoam. Ma vale dérreaisam? Você veio da caravana de ondeammm? No duro?
-                    É bom ou não é? É dinheiro ou não é? No duro? É por sua conta e riscoamm?
-                </article>
-            </div>
-        </div>
         <?php
 
         $sql = "select * from tbl_curiosidade where status <> 0";
