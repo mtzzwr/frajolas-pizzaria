@@ -55,7 +55,7 @@
                         <td>
                             <a onclick="modalDados(<?= $rs['id_usuario']; ?>);" class="btn-visualizar" href="#"><img src="./images/lupa.png" alt=""></a>
                             <a href="./add_usuario.php?modo=editar&codigo=<?= $rs['id_usuario']; ?>" class="btn-editar" href="#"><img src="./images/pen.png" alt=""></a>
-                            <a onclick="return confirm('Deseja realmente deletar o conteúdo?')" href="./add_curiosidade.php?modo=deletar&codigo=<?= $rs['id_curiosidade'] ?>"><img src="./images/delete.png" alt=""></a>
+                            <a onclick="return confirm('Deseja realmente deletar o conteúdo?')" href="./add_diferencial.php?modo=deletar&codigo=<?= $rs['id_diferencial'] ?>"><img src="./images/delete.png" alt=""></a>
                         </td>
                     </tr>
 

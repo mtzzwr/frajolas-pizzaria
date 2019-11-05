@@ -79,6 +79,11 @@ if (isset($_POST['btn-cadastrar'])) {
             $nivel = $_POST['nivel'];
             $status = $_POST['status'];
 
+            $cpf = preg_replace("/\D+/", "", $cpf);
+            $rg = preg_replace("/\D+/", "", $rg);
+            $celular = preg_replace("/\D+/", "", $celular);
+            $telefone = preg_replace("/\D+/", "", $telefone);
+
             ($status == 1) ? $chkOn = "checked" : $chkOff = "checked";
 
             $sqlUpdate = "UPDATE tbl_usuario SET nome = '" . $nome . "', cpf = '" . $cpf . "', rg = '" . $rg . "', email = '" . $email . "', celular = '" . $celular . "', telefone = '" . $telefone . "', 
