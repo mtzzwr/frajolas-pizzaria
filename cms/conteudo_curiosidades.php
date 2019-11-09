@@ -25,6 +25,7 @@ $conexao = conexaoMysql();
             <table>
                 <th>Titulo curiosidade</th>
                 <th>Descrição curiosidade</th>
+                <th>Imagem</th>
                 <th>Status</th>
                 <th>Ações</th>
                 <tbody>
@@ -41,6 +42,7 @@ $conexao = conexaoMysql();
                         <tr>
                             <td><?php echo $rs['titulo_curiosidade']; ?></td>
                             <td><?php echo $rs['desc_curiosidade']; ?></td>
+                            <td><img src="/db/files/"<?= $rs['imagem_curiosidade'] ?> width="200px" height="140px"/></td>
                             <td><?php if ($rs['status'] == 1) {
 
                                         ?>
@@ -55,9 +57,8 @@ $conexao = conexaoMysql();
                                 <?php
                                     } ?></td>
                             <td>
-                                <a onclick="modalDados(<?= $rs['id_usuario']; ?>);" class="btn-visualizar" href="#"><img src="./images/lupa.png" alt=""></a>
                                 <a href="./add_usuario.php?modo=editar&codigo=<?= $rs['id_usuario']; ?>" class="btn-editar" href="#"><img src="./images/pen.png" alt=""></a>
-                                <a onclick="return confirm('Deseja realmente deletar o conteúdo?')" href="./add_curiosidade.php?modo=deletar&codigo=<?= $rs['id_curiosidade'] ?>"><img src="./images/delete.png" alt=""></a>
+                                <a onclick="return confirm('Deseja realmente deletar o conteúdo?')" href="./add_curiosidade.php?foto=<?= $rs['imagem_curiosidade'];?>&modo=deletar&codigo=<?= $rs['id_curiosidade'] ?>"><img src="./images/delete.png" alt=""></a>
                             </td>
                         </tr>
 

@@ -8,13 +8,18 @@ $cod = 0;
 
 $modo = @$_GET['modo'];
 $cod = @$_GET['codigo'];
+$foto = @$_GET['foto'];
 
 if (isset($modo)) {
     if ($modo == 'deletar') {
         $sql = "DELETE FROM tbl_curiosidade WHERE id_curiosidade = " . $cod . "";
 
-        if (mysqli_query($conexao, $sql))  header('location:./conteudo_curiosidades.php');
-        else echo 'erro ao excluir';
+        if (mysqli_query($conexao, $sql)) {
+            unlink('./db/files/'.$foto);
+            header('location:./conteudo_curiosidades.php');
+        } else {
+            echo 'erro ao excluir';
+        }
     }
 }
 
@@ -25,7 +30,7 @@ if (isset($_POST['btn-cadastrar'])) {
     $desc = $_POST['txt-desc'];
     $status = $_POST['status'];
 
-    $file_name = basename($_FILES['foto']['name']);
+    $file_name = $_FILES['foto'];
     $image_name = uploadImagem($file_name);
 
     $sql = "insert into tbl_curiosidade values(null, '" . $image_name . "', '" . $titulo . "', '" . $desc . "', " . $status . ")";

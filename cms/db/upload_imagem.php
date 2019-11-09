@@ -6,15 +6,15 @@ function uploadImagem($file_name){
     $max_file_size = (int) 1000;
     $accepted_files = array('image/jpeg', 'image/png', 'image/jpg');
 
-    if($_FILES['foto']['type'] != ''){
-        if($_FILES['foto']['size'] > 0){
-            $type_file = $_FILES['foto']['type'];
+    if($file_name['type'] != ''){
+        if($file_name['size'] > 0){
+            $type_file = $file_name['type'];
 
             if(in_array($type_file, $accepted_files)){
-                $file_size = round($_FILES['foto']['size'] / 1024);
+                $file_size = round($file_name['size'] / 1024);
 
                 if($file_size <= $max_file_size){
-                    $real_file_name = $_FILES['foto']['name'];
+                    $real_file_name = $file_name['name'];
                     $file_name = pathinfo($real_file_name, PATHINFO_FILENAME);
                     $file_extension = pathinfo($real_file_name, PATHINFO_EXTENSION);
 
