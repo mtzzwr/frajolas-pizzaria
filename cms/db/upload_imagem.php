@@ -26,19 +26,19 @@ function uploadImagem($file_name){
                     if(move_uploaded_file($tmp_file, $dir . $image_name)){
                         return $image_name;
                     }else{
-                        echo '<script>alert("Erro ao enviar o arquivo para o server");</script>';
+                        echo '<script>alert("Erro ao enviar o arquivo para o server"); window.location.history(-1);</script>';
                     }
                 }else{
-                    echo '<script>alert("Tamanho do arquivo maior que o permitido - (1mb)");</script>';
+                    echo '<script>alert("Tamanho do arquivo maior que o permitido - (1mb)"); window.location.history(-1);</script>';
                 }
             }else{
-                echo '<script>alert("Tipo do arquivo não é permitido");</script>';
+                echo '<script>alert("Tipo do arquivo não é permitido"); window.location.history(-1);</script>';
             }
         }else{
-            echo '<script>alert("O tamanho do arquivo é inexistente");</script>';
+            echo '<script>alert("O tamanho do arquivo é inexistente"); window.location.history(-1);</script>';
         }
     }else{
-        echo '<script>alert("Tipo do arquivo está vazio");</script>';
+        echo '<script>alert("Tipo do arquivo está vazio"); window.location.history(-1);</script>';
     }
 }
 

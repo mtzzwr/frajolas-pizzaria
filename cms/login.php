@@ -8,11 +8,6 @@ $senha = $_POST['txtSenhaCms'];
 
 $status = 0;
 
-// $sql = "select tbl_usuario.*, tbl_nivel.* from tbl_usuario inner join tbl_nivel 
-//     on tbl_usuario.id_nivel = tbl_nivel.id_nivel 
-//     where tbl_usuario.status = 1 and tbl_usuario.usuario = '" . $usuario . "' and tbl_usuario.senha = '" . $senha . "' and 
-//     tbl_nivel.status = 1";
-
 $sql_usuario = "select * from tbl_usuario where usuario = '".$usuario."' and senha = '".$senha."'";
 
 $select = mysqli_query($conexao, $sql_usuario);
@@ -41,29 +36,3 @@ if($_SESSION['login'] != $usuario and $_SESSION['senha'] != $senha){
 }else{
     header('location:./cms/home.php');
 }
-
-
-// if($_SESSION['login'] == $usuario and $_SESSION['senha'] == $senha){
-//     header('location:./cms/home.php');
-// }else{
-//     echo '<script>alert("Usuário ou senha incorretos"); window.history.go(-1)</script>';
-// }
-
-
-// if ($status == 0) {
-//     echo '<script>alert("Sem permissão de acesso! Nivel ou usuário desativados"); window.history.go(-1)</script>';
-// } else if ($status == 1) {
-//     if ($userdb == $usuario and $senhadb == $senha) {
-//         $_SESSION['login'] = $userdb;
-//         $_SESSION['senha'] = $senhadb;
-//         $_SESSION['idNivel'] = $idNivel;
-//         $_SESSION['status'] = $status;
-//         header('location:./cms/home.php');
-//     }else{
-//         echo '<script>alert("Esse usuário não existe"); window.history.go(-1)</script>';
-//     }
-// } else {
-//     echo 'erro';
-// }
-
-// verificar se o nivel está ativo, se estiver, libera o acesso ao cms, se não, bloquear acesso

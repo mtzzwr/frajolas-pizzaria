@@ -54,14 +54,25 @@ $conexao = conexaoMysql();
         </div>
         <div class="historia">
             <div class="txt-historia">
-                <h1>Nossa História</h1>
-                <p>
-                    Silvio Santos Ipsum ma você, topa ou no topamm. Ma tem ou no tem o celular
-                    do milhãouamm? O prêmio é em barras de ouro, que vale mais que dinheiroam.
-                    Ha hai. Bem boladoam, bem boladoam. Bem gozadoam. O arriscam tuduam, valendo
-                    um milhão de reaisuam. Um, dois três, quatro, PIM, entendeuam? Vem pra lá,
-                    mah você vai pra cá. Agora vai, agora vem pra lamm. Mah roda a roduamm.
-                </p>
+                <?php
+
+                $sql = "SELECT * FROM tbl_historia WHERE status <> 0";
+
+                $select = mysqli_query($conexao, $sql);
+
+                while ($rs = mysqli_fetch_array($select)) {
+
+                    ?>
+
+                    <h1><?= $rs['titulo_historia'] ?></h1>
+                    <p>
+                        <?= $rs['desc_historia'] ?>
+                    </p>
+
+                <?php
+                }
+
+                ?>
             </div>
         </div>
         <hr>
@@ -76,7 +87,7 @@ $conexao = conexaoMysql();
                 ?>
 
                 <div class="card-diferenciais">
-                    <a href="#"><img src="cms\db\files\<?=$rs['imagem_diferencial']?>" alt="" width="80px" height="80px"></a>
+                    <a href="#"><img src="cms\db\files\<?= $rs['imagem_diferencial'] ?>" alt="" width="80px" height="80px"></a>
                     <div class="title">
                         <h1><?= $rs['titulo_diferencial'] ?></h1>
                     </div>
