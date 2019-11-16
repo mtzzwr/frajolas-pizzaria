@@ -12,23 +12,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/template.css">
-    <title>Diferenciais - CMS</title>
+    <title>Lojas - CMS</title>
 </head>
 
 <body>
     <?php include './include/header.php'; ?>
     <section class="conteudo-principal">
-        <h1>Diferenciais</h1>
-        <a href="add_diferencial.php">Novo card</a>
+        <h1>Lojas</h1>
+        <a href="crud_lojas.php">Novo card</a>
+        <a href="crud_titulo_subtitulo.php">Novo titulo</a>
         <table>
-            <th>Titulo diferencial</th>
-            <th>Descrição diferencial</th>
+            <th>Nome loja</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
             <th>Status</th>
             <th>Ações</th>
             <tbody>
                 <?php
 
-                $sql = "select * from tbl_diferenciais";
+                $sql = "select * from tbl_loja";
 
                 $select = mysqli_query($conexao, $sql);
 
@@ -37,8 +39,9 @@
                     ?>
 
                     <tr>
-                        <td><?php echo $rs['titulo_diferencial']; ?></td>
-                        <td><?php echo $rs['desc_diferencial']; ?></td>
+                        <td><?php echo $rs['nome_loja']; ?></td>
+                        <td><?php echo $rs['endereco_loja']; ?></td>
+                        <td><?php echo $rs['telefone_loja']; ?></td>
                         <td><?php if ($rs['status'] == 1) {
 
                                     ?>

@@ -13,8 +13,11 @@ if (isset($modo)) {
     if ($modo == 'deletar') {
         $sql = "DELETE FROM tbl_historia WHERE id_historia = " . $cod . "";
 
-        if (mysqli_query($conexao, $sql))  header('location:./adm_historia.php');
-        else echo 'erro ao excluir';
+        if (mysqli_query($conexao, $sql)){
+            header('location:./adm_historia.php');
+        }else{
+            echo 'erro ao excluir';
+        }
     }
 }
 

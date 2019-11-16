@@ -41,8 +41,23 @@ $conexao = conexaoMysql();
     </header>
     <section class="container" id="container-curiosidades">
         <div class="txt-curiosidade">
-            <h2>Curiosidades sobre nossos produtos</h2>
-            <span>Texto aleatório Texto aleatório Texto aleatório Texto aleatório</span>
+            <?php
+
+            $sql = "select * from tbl_titulo_subtitulo where pagina = 'curiosidade' and status <> 0";
+
+            $select = mysqli_query($conexao, $sql);
+
+            while ($rs = mysqli_fetch_array($select)) {
+
+                ?>
+
+                <h2><?= $rs['titulo'] ?></h2>
+                <span><?= $rs['subtitulo'] ?></span>
+
+            <?php
+            }
+
+            ?>
         </div>
         <hr>
         <?php
@@ -56,7 +71,7 @@ $conexao = conexaoMysql();
 
             <div id="pizza-chiclete" class="produto-curiosidade">
                 <div class="img-produto-curiosidade">
-                    <img src="cms\db\files\<?=$rs['imagem_curiosidade']?>" alt="" width="800px" height="430px">
+                    <img src="cms\db\files\<?= $rs['imagem_curiosidade'] ?>" alt="" width="800px" height="430px">
                 </div>
                 <div class="txt-produto-curiosidade">
                     <article>

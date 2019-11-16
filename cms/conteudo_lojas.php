@@ -19,6 +19,7 @@
     <?php include './include/header.php'; ?>
     <section class="conteudo-principal">
         <h1>Conteúdos da página Lojas</h1>
+        <a href="adm_lojas.php">Card de loja</a>
     </section>
     <?php include './include/footer.php'; ?>
 </body>
