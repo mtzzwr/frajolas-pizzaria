@@ -73,7 +73,7 @@ $conexao = conexaoMysql();
 
                 <div class="card-loja">
                     <div class="img-loja">
-                        <img src="cms\db\files\<?= $rs['imagem_loja'] ?>" height="300px" alt="">
+                        <img src="cms\db\files\<?= $rs['imagem_loja'] ?>" height="220px" alt="">
                     </div>
                     <div class="nome-loja">
                         <?= $rs['nome_loja'] ?>

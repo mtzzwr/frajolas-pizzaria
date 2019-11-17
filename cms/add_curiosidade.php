@@ -10,6 +10,12 @@ $modo = @$_GET['modo'];
 $cod = @$_GET['codigo'];
 $foto = @$_GET['foto'];
 
+$chkOn = null;
+$chkOff = null;
+
+$titulo = null;
+$desc = null;
+
 if (isset($modo)) {
     if ($modo == 'deletar') {
         $sql = "DELETE FROM tbl_curiosidade WHERE id_curiosidade = " . $cod . "";
@@ -20,6 +26,21 @@ if (isset($modo)) {
         } else {
             echo 'erro ao excluir';
         }
+    }else if($modo == 'editar'){
+
+        $btn = 'Editar';
+
+        $sql = "SELECT * FROM tbl_curiosidade";
+
+        $select = mysqli_query($conexao, $sql);
+
+        if ($rs = mysqli_fetch_array($select)) {
+            $titulo = $rs['titulo_curiosidade'];
+            $desc = $rs['desc_curiosidade'];
+            $status = $rs['status'];
+        }
+
+        ($status == 1) ? $chkOn = "checked" : $chkOff = "checked";
     }
 }
 
@@ -30,10 +51,15 @@ if (isset($_POST['btn-cadastrar'])) {
     $desc = $_POST['txt-desc'];
     $status = $_POST['status'];
 
-    $file_name = $_FILES['foto'];
-    $image_name = uploadImagem($file_name);
-
-    $sql = "insert into tbl_curiosidade values(null, '" . $image_name . "', '" . $titulo . "', '" . $desc . "', " . $status . ")";
+    if($modo == 'editar'){
+        $sql = "update tbl_curiosidade set titulo_curiosidade = '".$titulo."', desc_curiosidade = '".$desc."', 
+        status = '".$status."' where id_curiosidade = ".$cod;
+    }else{
+        $file_name = $_FILES['foto'];
+        $image_name = uploadImagem($file_name);
+    
+        $sql = "insert into tbl_curiosidade values(null, '" . $image_name . "', '" . $titulo . "', '" . $desc . "', " . $status . ")";
+    }
 
     if (mysqli_query($conexao, $sql)) {
         echo 'funfou';
@@ -73,11 +99,11 @@ if (isset($_POST['btn-cadastrar'])) {
                     <img id="output">
                     <img src="./images/camera.png" alt="Select img" />
                 </label>
-                <input type="text" name="txt-titulo" id="" placeholder="Titulo da curiosidade"> <br>
-                <textarea name="txt-desc" placeholder="Descrição da curiosidade" id="" cols="30" rows="10"></textarea>
+                <input type="text" value="<?= $titulo ?>" name="txt-titulo" id="" placeholder="Titulo da curiosidade"> <br>
+                <textarea name="txt-desc" placeholder="Descrição da curiosidade" id="" cols="30" rows="10"><?= $desc ?></textarea>
                 <div class="rg-sexo">
-                    <input type="radio" name="status" value="1" id="" checked>Online
-                    <input type="radio" name="status" value="0" id="">Offline
+                    <input type="radio" name="status" <?= $chkOn ?> value="1" id="" checked>Online
+                    <input type="radio" name="status" <?= $chkOff ?> value="0" id="">Offline
                 </div>
                 <input type="submit" name="btn-cadastrar" value="Cadastrar">
             </form>

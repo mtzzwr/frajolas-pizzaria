@@ -57,7 +57,7 @@ $conexao = conexaoMysql();
                                 <?php
                                     } ?></td>
                             <td>
-                                <a href="./add_usuario.php?modo=editar&codigo=<?= $rs['id_usuario']; ?>" class="btn-editar" href="#"><img src="./images/pen.png" alt=""></a>
+                                <a href="./add_curiosidade.php?foto=<?= $rs['imagem_curiosidade'] ?>&modo=editar&codigo=<?= $rs['id_curiosidade']; ?>" class="btn-editar" href="#"><img src="./images/pen.png" alt=""></a>
                                 <a onclick="return confirm('Deseja realmente deletar o conteúdo?')" href="./add_curiosidade.php?foto=<?= $rs['imagem_curiosidade'];?>&modo=deletar&codigo=<?= $rs['id_curiosidade'] ?>"><img src="./images/delete.png" alt=""></a>
                             </td>
                         </tr>

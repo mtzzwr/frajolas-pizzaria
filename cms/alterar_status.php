@@ -27,6 +27,12 @@ if (isset($alterar)) {
     }else if($alterar == 'historia'){
         $nome_tabela = 'tbl_historia';
         $id_tabela = 'id_historia';
+    }else if($alterar == 'loja'){
+        $nome_tabela = 'tbl_loja';
+        $id_tabela = 'id_loja';
+    }else if($alterar == 'tituloLoja'){
+        $nome_tabela = 'tbl_titulo_subtitulo';
+        $id_tabela = 'id_loja';
     }
 
     $sql = "SELECT * FROM ".$nome_tabela." WHERE ".$id_tabela." = ".$cod;
