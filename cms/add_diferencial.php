@@ -10,6 +10,15 @@ $modo = @$_GET['modo'];
 $cod = @$_GET['codigo'];
 $foto = @$_GET['foto'];
 
+$chkOn = null;
+$chkOff = null;
+
+$titulo = null;
+$desc = null;
+$imagem = null;
+
+$btn = 'Cadstrar';
+
 if (isset($modo)) {
     if ($modo == 'deletar') {
         $sql = "DELETE FROM tbl_diferenciais WHERE id_diferencial = " . $cod . "";
@@ -19,12 +28,21 @@ if (isset($modo)) {
             header('location:./adm_diferenciais.php');
         }
     }else if($modo == 'editar'){
+
+        $btn = 'Editar';
+
         $sql = "SELECT * FROM tbl_diferenciais WHERE id_diferencial = ".$cod;
 
         $select = mysqli_query($conexao, $sql);
 
+        if ($rs = mysqli_fetch_array($select)) {
+            $imagem = $rs['imagem_diferencial'];
+            $titulo = $rs['titulo_diferencial'];
+            $desc = $rs['desc_diferencial'];
+            $status = $rs['status'];
+        }
 
-
+        ($status == 1) ? $chkOn = "checked" : $chkOff = "checked";
     }
 }
 
@@ -35,11 +53,25 @@ if (isset($_POST['btn-cadastrar'])) {
     $desc = $_POST['txt-desc'];
     $status = $_POST['status'];
 
-    $file_name = basename($_FILES['foto']['name']);
-    
-    $image_name = uploadImagem($file_name);
+    $file_name = $_FILES['foto'];
+    $imagem = uploadImagem($file_name);
 
-    $sql = "insert into tbl_diferenciais values(null, '" . $image_name . "', '" . $titulo . "', '" . $desc . "', " . $status . ")";
+    if($modo == 'editar'){
+        $sql = "update tbl_diferenciais set titulo_diferencial = '".$titulo."', desc_diferencial = '".$desc."', 
+        status = '".$status."' where id_diferencial = ".$cod;
+
+        if($imagem != ''){
+            $sql = "update tbl_diferenciais set imagem_diferencial = '".$imagem."', titulo_diferencial = '".$titulo."', desc_diferencial = '".$desc."', 
+            status = '".$status."' where id_diferencial = ".$cod;
+        }
+
+    }else{
+        if($imagem != ''){
+            $sql = "insert into tbl_diferenciais values(null, '" . $imagem . "', '" . $titulo . "', '" . $desc . "', " . $status . ")";
+        }else{
+            echo 'erro, escolha uma imagem para prosseguir';
+        }
+    }
 
     if (mysqli_query($conexao, $sql)) {
         echo 'funfou';
@@ -77,16 +109,16 @@ if (isset($_POST['btn-cadastrar'])) {
             <form class="form-template" id="form-curiosidade" action="" method="post" enctype="multipart/form-data">
                 <label id="thumbnail">
                     <input type="file" name="foto" onchange="loadFile(event)">
-                    <img id="output">
+                    <img src="db/files/<?= $imagem ?>" id="output">
                     <img src="./images/camera.png" alt="Select img" />
                 </label>
-                <input type="text" name="txt-titulo" id="" placeholder="Titulo do diferencial"> <br>
-                <textarea name="txt-desc" placeholder="Descrição do diferencial" id="" cols="30" rows="10"></textarea>
+                <input type="text" value="<?= $titulo ?>" name="txt-titulo" id="" placeholder="Titulo do diferencial"> <br>
+                <textarea name="txt-desc" placeholder="Descrição do diferencial" id="" cols="30" rows="10"><?= $desc ?></textarea>
                 <div class="rg-sexo">
-                    <input type="radio" name="status" value="1" id="" checked>Online
-                    <input type="radio" name="status" value="0" id="">Offline
+                    <input type="radio" name="status" <?= $chkOn ?> value="1" id="" checked>Online
+                    <input type="radio" name="status" <?= $chkOff ?> value="0" id="">Offline
                 </div>
-                <input type="submit" name="btn-cadastrar" value="Cadastrar">
+                <input type="submit" name="btn-cadastrar" value="<?= $btn ?>">
             </form>
         </div>
     </section>

@@ -15,6 +15,7 @@ $chkOff = null;
 
 $titulo = null;
 $desc = null;
+$imagem = null;
 
 $btn = 'Cadstrar';
 
@@ -70,6 +71,8 @@ if (isset($_POST['btn-cadastrar'])) {
     }else{
         if($imagem != ''){
             $sql = "insert into tbl_curiosidade values(null, '" . $imagem . "', '" . $titulo . "', '" . $desc . "', " . $status . ")";
+        }else{
+            echo 'erro, escolha uma imagem para prosseguir';
         }
     }
 
@@ -108,7 +111,7 @@ if (isset($_POST['btn-cadastrar'])) {
             <form class="form-template" id="form-curiosidade" action="" method="post" enctype="multipart/form-data">
                 <label id="thumbnail">
                     <input type="file" name="foto" onchange="loadFile(event)">
-                    <img id="output">
+                    <img src="db/files/<?= $imagem ?>" id="output">
                     <img src="./images/camera.png" alt="Select img" />
                 </label>
                 <input type="text" value="<?= $titulo ?>" name="txt-titulo" id="" placeholder="Titulo da curiosidade"> <br>
