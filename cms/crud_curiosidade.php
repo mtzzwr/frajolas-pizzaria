@@ -16,6 +16,8 @@ $chkOff = null;
 $titulo = null;
 $desc = null;
 
+$btn = 'Cadstrar';
+
 if (isset($modo)) {
     if ($modo == 'deletar') {
         $sql = "DELETE FROM tbl_curiosidade WHERE id_curiosidade = " . $cod . "";
@@ -30,11 +32,12 @@ if (isset($modo)) {
 
         $btn = 'Editar';
 
-        $sql = "SELECT * FROM tbl_curiosidade";
+        $sql = "SELECT * FROM tbl_curiosidade WHERE id_curiosidade = ".$cod;
 
         $select = mysqli_query($conexao, $sql);
 
         if ($rs = mysqli_fetch_array($select)) {
+            $imagem = $rs['imagem_curiosidade'];
             $titulo = $rs['titulo_curiosidade'];
             $desc = $rs['desc_curiosidade'];
             $status = $rs['status'];
@@ -51,18 +54,27 @@ if (isset($_POST['btn-cadastrar'])) {
     $desc = $_POST['txt-desc'];
     $status = $_POST['status'];
 
+    $file_name = $_FILES['foto'];
+    $imagem = uploadImagem($file_name);
+
     if($modo == 'editar'){
+
         $sql = "update tbl_curiosidade set titulo_curiosidade = '".$titulo."', desc_curiosidade = '".$desc."', 
         status = '".$status."' where id_curiosidade = ".$cod;
+
+        if($imagem != ''){
+            $sql = "update tbl_curiosidade set imagem_curiosidade = '".$imagem."', titulo_curiosidade = '".$titulo."', desc_curiosidade = '".$desc."', 
+            status = '".$status."' where id_curiosidade = ".$cod;
+        }
+
     }else{
-        $file_name = $_FILES['foto'];
-        $image_name = uploadImagem($file_name);
-    
-        $sql = "insert into tbl_curiosidade values(null, '" . $image_name . "', '" . $titulo . "', '" . $desc . "', " . $status . ")";
+        if($imagem != ''){
+            $sql = "insert into tbl_curiosidade values(null, '" . $imagem . "', '" . $titulo . "', '" . $desc . "', " . $status . ")";
+        }
     }
 
     if (mysqli_query($conexao, $sql)) {
-        echo 'funfou';
+        header('location:./conteudo_curiosidades.php');
     } else {
         echo $sql;
     }
@@ -105,7 +117,7 @@ if (isset($_POST['btn-cadastrar'])) {
                     <input type="radio" name="status" <?= $chkOn ?> value="1" id="" checked>Online
                     <input type="radio" name="status" <?= $chkOff ?> value="0" id="">Offline
                 </div>
-                <input type="submit" name="btn-cadastrar" value="Cadastrar">
+                <input type="submit" name="btn-cadastrar" value="<?= $btn ?>">
             </form>
         </div>
     </section>
