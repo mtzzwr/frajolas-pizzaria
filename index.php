@@ -5,9 +5,8 @@ $conexao = conexaoMysql();
 
 session_start();
 
-if(isset($_POST['btnEntrarCms'])){
-   require_once './cms/login.php';
-
+if (isset($_POST['btnEntrarCms'])) {
+    require_once './cms/login.php';
 }
 
 ?>
@@ -26,10 +25,20 @@ if(isset($_POST['btnEntrarCms'])){
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/slider.css">
     <link rel="shortcut icon" href="./images/pizzaa.png" type="image/x-icon">
+    <script>
+        $(document).ready(function() {
+            $(".logo").on('click', function() {
+                $(".menu-mobile").fadeIn(1000);
+            })
+        });
+    </script>
     <title>Frajola's Pizzaria</title>
 </head>
 
 <body>
+    <div class="menu-mobile">
+
+    </div>
     <header id="header">
         <div class="logo">
 
