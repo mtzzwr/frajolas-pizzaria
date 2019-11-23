@@ -17,7 +17,7 @@ $titulo = null;
 $desc = null;
 $imagem = null;
 
-$btn = 'Cadstrar';
+$btn = 'Cadastrar';
 
 if (isset($modo)) {
     if ($modo == 'deletar') {

@@ -10,20 +10,41 @@ $modo = @$_GET['modo'];
 $cod = @$_GET['codigo'];
 $foto = @$_GET['foto'];
 
+$chkOn = null;
+$chkOff = null;
+
+$nome = null;
+$endereco = null;
+$imagem = null;
+$telefone = null;
+
+$btn = 'Cadastrar';
+
 if (isset($modo)) {
     if ($modo == 'deletar') {
-        $sql = "DELETE FROM tbl_diferenciais WHERE id_diferencial = " . $cod . "";
+        $sql = "DELETE FROM tbl_loja WHERE id_loja = " . $cod . "";
 
         if (mysqli_query($conexao, $sql)){ 
             unlink('./db/files/'.$foto);
-            header('location:./adm_diferenciais.php');
+            header('location:./conteudo_lojas.php');
         }
     }else if($modo == 'editar'){
-        $sql = "SELECT * FROM tbl_diferenciais WHERE id_diferencial = ".$cod;
+
+        $btn = 'Editar';
+
+        $sql = "SELECT * FROM tbl_loja WHERE id_loja = ".$cod;
 
         $select = mysqli_query($conexao, $sql);
 
+        if ($rs = mysqli_fetch_array($select)) {
+            $imagem = $rs['imagem_loja'];
+            $nome = $rs['nome_loja'];
+            $endereco = $rs['endereco_loja'];
+            $telefone = $rs['telefone_loja'];
+            $status = $rs['status'];
+        }
 
+        ($status == 1) ? $chkOn = "checked" : $chkOff = "checked";
 
     }
 }
@@ -36,11 +57,25 @@ if (isset($_POST['btn-cadastrar'])) {
     $telefone = $_POST['txt-telefone'];
     $status = $_POST['status'];
 
-    $file_name = basename($_FILES['foto']['name']);
-    
-    $image_name = uploadImagem($file_name);
+    $file_name = $_FILES['foto'];
+    $imagem = uploadImagem($file_name);
 
-    $sql = "insert into tbl_loja values(null, '" . $image_name . "', '" . $nome . "', '" . $endereco . "', '" . $telefone . "', " . $status . ")";
+    if($modo == 'editar'){
+
+        $sql = "update tbl_loja set nome_loja = '".$nome."', endereco_loja = '".$endereco."', telefone_loja = '".$telefone."', 
+        status = '".$status."' where id_loja = ".$cod;
+
+        if($imagem != ''){
+            unlink('./db/files/'.$foto);
+            $sql = "update tbl_loja set imagem_loja = '".$imagem."', nome_loja = '".$nome."', endereco_loja = '".$endereco."', telefone_loja = '".$telefone."', 
+            status = '".$status."' where id_loja = ".$cod;
+        }
+    }else{
+        if($imagem != ''){
+            $sql = "insert into tbl_loja values(null, '" . $imagem . "', '" . $nome . "', '" . $endereco . "', 
+            '" . $telefone . "', " . $status . ")";
+        }
+    }
 
     if (mysqli_query($conexao, $sql)) {
         echo 'funfou';
@@ -78,15 +113,15 @@ if (isset($_POST['btn-cadastrar'])) {
             <form class="form-template" id="form-curiosidade" action="" method="post" enctype="multipart/form-data">
                 <label id="thumbnail">
                     <input type="file" name="foto" onchange="loadFile(event)">
-                    <img id="output">
+                    <img src="db/files/<?= $imagem ?>" id="output">
                     <img src="./images/camera.png" alt="Select img" />
                 </label>
-                <input type="text" name="txt-nome" id="" placeholder="Nome da loja"> <br>
-                <input type="text" name="txt-endereco" id="" placeholder="Endereço da loja"> <br>
-                <input type="text" name="txt-telefone" id="" placeholder="Telefone da loja"> <br>
+                <input type="text" name="txt-nome" id="" value="<?=$nome ?>" placeholder="Nome da loja"> <br>
+                <input type="text" name="txt-endereco" id="" value="<?=$endereco ?>" placeholder="Endereço da loja"> <br>
+                <input type="text" name="txt-telefone" id="" value="<?=$telefone ?>" placeholder="Telefone da loja"> <br>
                 <div class="rg-sexo">
-                    <input type="radio" name="status" value="1" id="" checked>Online
-                    <input type="radio" name="status" value="0" id="">Offline
+                    <input type="radio" name="status" <?= $chkOn ?> value="1" id="" checked>Online
+                    <input type="radio" name="status" <?= $chkOff ?> value="0" id="">Offline
                 </div>
                 <input type="submit" name="btn-cadastrar" value="Cadastrar">
             </form>
