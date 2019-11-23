@@ -21,7 +21,7 @@ $conexao = conexaoMysql();
     <section class="conteudo-principal">
         <div class="conteudo">
             <h1>Conteúdos da página Curiosidades</h1>
-            <a href="crud_curiosidade.php">Nova Curiosidade</a>
+            <a href="crud_curiosidade.php" style="margin-bottom: 10px;">Nova Curiosidade</a>
             <table>
                 <th>Titulo curiosidade</th>
                 <th>Descrição curiosidade</th>
@@ -42,7 +42,7 @@ $conexao = conexaoMysql();
                         <tr>
                             <td><?php echo $rs['titulo_curiosidade']; ?></td>
                             <td><?php echo $rs['desc_curiosidade']; ?></td>
-                            <td><img src="./db/files/"<?php echo $rs['imagem_curiosidade']?> width="200px" height="140px"/></td>
+                            <td><img src="db\files\<?php echo $rs['imagem_curiosidade']?>" width="200px" height="140px"/></td>
                             <td><?php if ($rs['status'] == 1) {
 
                                         ?>

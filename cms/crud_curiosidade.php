@@ -64,6 +64,7 @@ if (isset($_POST['btn-cadastrar'])) {
         status = '".$status."' where id_curiosidade = ".$cod;
 
         if($imagem != ''){
+            unlink('./db/files/'.$foto);
             $sql = "update tbl_curiosidade set imagem_curiosidade = '".$imagem."', titulo_curiosidade = '".$titulo."', desc_curiosidade = '".$desc."', 
             status = '".$status."' where id_curiosidade = ".$cod;
         }
