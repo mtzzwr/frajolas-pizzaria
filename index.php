@@ -301,7 +301,7 @@ if (isset($_POST['btnEntrarCms'])) {
             </div>
         </div>
         <footer>
-            <a class="btn-sistema" href="#">Sistema Interno</a>
+            <a class="btn-sistema" href="./cms/adm_produtos/index.php">Sistema Interno</a>
             <div class="endereco">
                 <p>Endereço: Avenida Luis Carlos Berrini, n° 666 - Berrini/SP</p>
             </div>
