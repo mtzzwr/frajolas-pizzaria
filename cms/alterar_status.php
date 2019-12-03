@@ -32,7 +32,7 @@ if (isset($alterar)) {
         $id_tabela = 'id_loja';
     }else if($alterar == 'tituloLoja'){
         $nome_tabela = 'tbl_titulo_subtitulo';
-        $id_tabela = 'id_loja';
+        $id_tabela = 'id_titulo_subtitulo';
     }
 
     $sql = "SELECT * FROM ".$nome_tabela." WHERE ".$id_tabela." = ".$cod;
