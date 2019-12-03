@@ -25,7 +25,7 @@ if (isset($modo)) {
 
         if (mysqli_query($conexao, $sql)){ 
             unlink('./db/files/'.$foto);
-            header('location:./adm_diferenciais.php');
+            header('location:./conteudo_sobre.php');
         }
     }else if($modo == 'editar'){
 
