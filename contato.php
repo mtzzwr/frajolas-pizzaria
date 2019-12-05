@@ -14,7 +14,7 @@ $conexao = conexaoMysql();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="./cms/js/jquery-3.4.1.js"></script>
-    <script src="./js/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>
+    <script src="./js/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js"></script>
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/contato.css">
     <link rel="shortcut icon" href="./images/pizzaa.png" type="image/x-icon">
