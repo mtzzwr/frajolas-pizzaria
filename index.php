@@ -29,7 +29,27 @@ if (isset($_POST['btnEntrarCms'])) {
         $(document).ready(function() {
             $(".logo").on('click', function() {
                 $(".menu-mobile").fadeIn(1000);
-            })
+            });
+
+            $('.sub-menu ul').hide();
+            $(".sub-menu a").click(function() {
+                $(this).parent(".sub-menu").children("ul").slideToggle("100");
+                $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
+            });
+
+            // $(".sidemenu-item").on('click', function() {
+
+            //     if ($("#sub1").css('display') == 'none') {
+            //         $("#sub1").css({
+            //             display: 'block'
+            //         });
+            //     } else {
+            //         $("#sub1").css({
+            //             display: 'none'
+            //         });
+            //     }
+            // })
+
         });
     </script>
     <title>Frajola's Pizzaria</title>
@@ -99,209 +119,68 @@ if (isset($_POST['btnEntrarCms'])) {
         </div>
         <div class="container-principal">
             <div class="sidenav">
-                <ul class="sidemenu">
-                    <li class="sidemenu-item">Menu</li>
-                    <li class="sidemenu-item">Menu</li>
-                    <li class="sidemenu-item">Menu</li>
-                    <li class="sidemenu-item">Menu</li>
-                    <li class="sidemenu-item">Menu</li>
-                    <li class="sidemenu-item">Menu</li>
-                    <li class="sidemenu-item">Menu</li>
-                    <li class="sidemenu-item">Menu</li>
-                </ul>
+
+                <nav class='vertical animated bounceInDown'>
+                    <ul>
+                        <?php
+
+                        $sql = 'SELECT * FROM tbl_categoria WHERE status <> 0';
+
+                        $select = mysqli_query($conexao, $sql);
+
+                        while ($rs = mysqli_fetch_array($select)) {
+
+                            ?>
+
+                            <li class='sub-menu'><a href='#settings'><?= $rs['nome_categoria'] ?></a>
+                                <ul>
+                                    <li><a href='#settings'>Account</a></li>
+                                    <li><a href='#settings'>Profile</a></li>
+                                </ul>
+                            </li>
+
+                        <?php
+                        }
+
+                        ?>
             </div>
             <div class="container-produtos">
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/slide01.jpg" alt="Pizza">
+                <?php
+
+                $sql = 'SELECT * FROM tbl_produtos WHERE status <> 0';
+
+                $select = mysqli_query($conexao, $sql);
+
+                while ($rs = mysqli_fetch_array($select)) {
+                    ?>
+
+                    <div class="card-produto">
+                        <div class="img-produto">
+                            <img src="./images/slide01.jpg" alt="Pizza">
+                        </div>
+                        <div class="nome-produto">
+                            <?= $rs['nome_produto'] ?>
+                        </div>
+                        <div class="descricao-produto">
+                            <?= $rs['desc_produto'] ?>
+                        </div>
+                        <div class="preco-produto">
+                            <?= $rs['valor'] ?>
+                        </div>
+                        <div class="btn-detalhes">
+                            <a href="#">Detalhes</a>
+                        </div>
                     </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
-                <div class="card-produto">
-                    <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
-                    </div>
-                    <div class="nome-produto">
-                        Pizza
-                    </div>
-                    <div class="descricao-produto">
-                        Pizza aleatória Pizza aleatória Pizza aleatória
-                    </div>
-                    <div class="preco-produto">
-                        R$ 32,00
-                    </div>
-                    <div class="btn-detalhes">
-                        <a href="#">Detalhes</a>
-                    </div>
-                </div>
+
+                <?php
+                }
+
+                ?>
             </div>
         </div>
+        </div>
         <footer>
-            <a class="btn-sistema" href="./cms/adm_produtos/index.php">Sistema Interno</a>
+            <a class="btn-sistema" href="./mvc/index.php">Sistema Interno</a>
             <div class="endereco">
                 <p>Endereço: Avenida Luis Carlos Berrini, n° 666 - Berrini/SP</p>
             </div>

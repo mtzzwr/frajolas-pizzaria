@@ -21,6 +21,7 @@ $status = null;
 $conteudoChk = null;
 $faleConoscoChk = null;
 $usuarioChk = null;
+$produtoChk = null;
 
 $chkOn = null;
 $chkOff = null;
@@ -39,6 +40,7 @@ if (isset($modo)) {
             $chkConteudo = $rs['adm_conteudo'];
             $chkFaleConosco = $rs['adm_fale_conosco'];
             $chkUsuario = $rs['adm_usuario'];
+            $chkProduto = $rs['adm_produto'];
             $status = $rs['status'];
         }
 
@@ -60,6 +62,12 @@ if (isset($modo)) {
             $usuarioChk = "";
         }
 
+        if ($chkProduto == 1) {
+            $produtoChk = "checked";
+        } else if ($chkProduto == 0) {
+            $produtoChk = "";
+        }
+
         if ($status == 1) {
             $chkOn = "checked";
         } else if ($status == 0) {
@@ -76,6 +84,7 @@ if (isset($_POST['btn-cadastrar'])) {
             $chkConteudo = $_POST['chk-conteudo'];
             $chkFaleConosco = $_POST['chk-fale-conosco'];
             $chkUsuario = $_POST['chk-usuario'];
+            $chkProduto = $_POST['chk-produto'];
             $status = $_POST['status'];
 
             if ($status == '1') {
@@ -102,10 +111,16 @@ if (isset($_POST['btn-cadastrar'])) {
                 $chkUsuario = 0;
             }
 
-            if($chkConteudo == 0 and $chkFaleConosco == 0 and $chkUsuario == 0) echo 'Selecione pelo menos uma permissão';
+            if ($chkProduto == '1') {
+                $chkProduto = 1;
+            } else if ($chkProduto == '') {
+                $chkProduto = 0;
+            }
+
+            if($chkProduto == 0 and $chkConteudo == 0 and $chkFaleConosco == 0 and $chkUsuario == 0) echo 'Selecione pelo menos uma permissão';
 
             $sql = "UPDATE tbl_nivel SET nome_nivel = '".$nome."', descricao_nivel = '".$desc."', adm_conteudo = ".$chkConteudo.", 
-            adm_fale_conosco = ".$chkFaleConosco.", adm_usuario = ".$chkUsuario.", status = ".$status." WHERE id_nivel = ".$cod;
+            adm_fale_conosco = ".$chkFaleConosco.", adm_usuario = ".$chkUsuario.", status = ".$status.", adm_produto = ".$chkProduto." WHERE id_nivel = ".$cod;
 
             if(mysqli_query($conexao, $sql)){
                 header('location:./controle_niveis.php');
@@ -119,6 +134,7 @@ if (isset($_POST['btn-cadastrar'])) {
         $chkConteudo = $_POST['chk-conteudo'];
         $chkFaleConosco = $_POST['chk-fale-conosco'];
         $chkUsuario = $_POST['chk-usuario'];
+        $chkProduto = $_POST['chk-produto'];
         $status = $_POST['status'];
 
         if ($status == '1') {
@@ -145,9 +161,15 @@ if (isset($_POST['btn-cadastrar'])) {
             $chkUsuario = 0;
         }
 
-        if($chkConteudo == 0 and $chkFaleConosco == 0 and $chkUsuario == 0) echo 'Selecione pelo menos uma permissão';
+        if ($chkProduto == '1') {
+            $chkProduto = 1;
+        } else if ($chkProduto == '') {
+            $chkProduto = 0;
+        }
 
-        $sql = "INSERT INTO tbl_nivel VALUES (null, '" . $nome . "', '" . $desc . "', " . $chkConteudo . ", " . $chkFaleConosco . ", " . $chkUsuario . ", " . $status . ")";
+        if($chkProduto == 0 and $chkConteudo == 0 and $chkFaleConosco == 0 and $chkUsuario == 0) echo 'Selecione pelo menos uma permissão';
+
+        $sql = "INSERT INTO tbl_nivel VALUES (null, '" . $nome . "', '" . $desc . "', " . $chkConteudo . ", " . $chkFaleConosco . ", " . $chkUsuario . ", " . $status . ", ".$chkProduto.")";
 
         if (mysqli_query($conexao, $sql)) header('location:./controle_niveis.php');
         else echo $sql;
@@ -186,6 +208,7 @@ if (isset($_POST['btn-cadastrar'])) {
                     <input type="checkbox" id="chk-conteudo" name="chk-conteudo" <?= $conteudoChk ?> value="1" id="">Conteúdo
                     <input type="checkbox" id="chk-fale-conosco" name="chk-fale-conosco" <?= $faleConoscoChk ?> value="1" id="">Fale conosco
                     <input type="checkbox" id="chk-usuario" name="chk-usuario" <?= $usuarioChk ?> value="1" id="">Usuário
+                    <input type="checkbox" id="chk-produto" name="chk-produto" <?= $produtoChk ?> value="1" id="">Produtos
                 </div>
                 <div class="rg-sexo">
                     <input type="radio" name="status" <?= $chkOn ?> value="1" id="">Online
