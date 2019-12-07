@@ -124,7 +124,7 @@ if (isset($_POST['btnEntrarCms'])) {
                     <ul>
                         <?php
 
-                        $sql = 'SELECT * FROM tbl_categoria WHERE status <> 0';
+                        $sql = 'SELECT * FROM tbl_categoria';
 
                         $select = mysqli_query($conexao, $sql);
 
@@ -134,8 +134,18 @@ if (isset($_POST['btnEntrarCms'])) {
 
                             <li class='sub-menu'><a href='#settings'><?= $rs['nome_categoria'] ?></a>
                                 <ul>
-                                    <li><a href='#settings'>Account</a></li>
-                                    <li><a href='#settings'>Profile</a></li>
+                                    <?php
+
+                                        $sql_sub = 'SELECT * FROM tbl_subcategoria WHERE id_categoria = '.$rs['id_categoria'];
+
+                                        $select_sub = mysqli_query($conexao, $sql_sub);
+
+                                        while ($rs_sub = mysqli_fetch_array($select_sub)) {
+                                            ?>
+
+                                        <li><a href='#settings'><?=$rs_sub['nome_subcategoria']?></a></li>
+
+                                    <?php } ?>
                                 </ul>
                             </li>
 

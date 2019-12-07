@@ -19,22 +19,65 @@ $conexao = conexaoMysql();
 
 <body>
     <?php include_once './include/header.php';
-        $id_nivel = $_SESSION['idNivel'];
+    $id_nivel = $_SESSION['idNivel'];
 
-        $sql = "SELECT * FROM tbl_nivel WHERE id_nivel = " . $id_nivel;
+    $sql = "SELECT * FROM tbl_nivel WHERE id_nivel = " . $id_nivel;
 
-        $select = mysqli_query($conexao, $sql);
-        $rs = mysqli_fetch_array($select);
+    $select = mysqli_query($conexao, $sql);
+    $rs = mysqli_fetch_array($select);
 
-        $produto = $rs['adm_produto'];
+    $produto = $rs['adm_produto'];
 
-        if ($produto != 1) echo '<script>alert("Sem permissão"); window.history.go(-1)</script>'; 
-        
+    if ($produto != 1) echo '<script>alert("Sem permissão"); window.history.go(-1)</script>';
+
     ?>
     <section class="conteudo-principal">
         <h1>Produtos do site</h1>
         <div class="row">
-            
+            <div class="add-user">
+                <a href="add_nivel.php">Adicionar novo nivel</a>
+            </div>
+            <table>
+                <th>Nivel</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+                <th>Status</th>
+                <tbody>
+                    <?php {
+
+                        $sql = "select * from tbl_produtos";
+
+                        $select_all = mysqli_query($conexao, $sql);
+
+                        while ($rs = mysqli_fetch_array($select_all)) {
+
+                            ?>
+                            <tr>
+                                <td><?php echo $rs['nome_produto']; ?></td>
+                                <td><?php echo $rs['desc_produto']; ?></td>
+                                <td>
+                                    <a href="./add_nivel.php?modo=editar&codigo=<?= $rs['id_nivel']; ?>" class="btn-editar"><img src="./images/pen.png" alt=""></a>
+                                </td>
+                                <td><?php if ($rs['status'] == 1) {
+
+                                                ?>
+                                        <a href='alterar_status.php?alterar=nivel&status=<?= $rs['status'] ?>&codigo=<?= $rs['id_nivel']; ?>'><img src='./images/online.png' alt="Desativar" title="Desativar" /></a>
+
+                                    <?php
+                                            } else if ($rs['status'] == 0) {
+
+                                                ?>
+                                        <a href='alterar_status.php?alterar=nivel&status=<?= $rs['status'] ?>&codigo=<?= $rs['id_nivel']; ?>'><img src='./images/offline.png' alt="Ativar" title="Ativar" /></a>
+
+                                    <?php
+                                            } ?></td>
+                            </tr>
+                    <?php
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </section>
     <?php include './include/footer.php'; ?>
