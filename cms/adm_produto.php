@@ -35,7 +35,7 @@ $conexao = conexaoMysql();
         <h1>Produtos do site</h1>
         <div class="row">
             <div class="add-user">
-                <a href="add_nivel.php">Adicionar novo nivel</a>
+                <a href="crud_produto.php">Adicionar novo produto</a>
             </div>
             <table>
                 <th>Nivel</th>
