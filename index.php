@@ -158,7 +158,7 @@ if(isset($_GET['subcategoria'])){
 
                     <div class="card-produto">
                         <div class="img-produto">
-                            <img src="./images/slide01.jpg" alt="Pizza">
+                            <img src="cms/db/files/<?= $rs['imagem_produto'] ?>" alt="Pizza do mês">
                         </div>
                         <div class="nome-produto">
                             <?= $rs['nome_produto'] ?>

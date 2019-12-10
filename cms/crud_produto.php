@@ -6,6 +6,18 @@ $conexao = conexaoMysql();
 $modo = null;
 $cod = 0;
 
+$nome = null;
+$desc = null;
+$valor = null;
+$desconto = 0;
+$subcat = 0;
+$prod_mes = null;
+$status = null;
+$chkOn = null;
+$chkOff = null;
+$chkOnProd = null;
+$chkOffProd = null;
+
 $modo = @$_GET['modo'];
 $cod = @$_GET['codigo'];
 $foto = @$_GET['foto'];
@@ -19,6 +31,25 @@ if (isset($modo)) {
             header('location:./adm_produto.php');
         } else {
             echo 'erro ao excluir';
+        }
+    }else if($modo == 'editar'){
+        $sql = "SELECT * FROM tbl_produtos WHERE id_produto = ".$cod;
+        $select = mysqli_query($conexao, $sql);
+
+        if ($rs = mysqli_fetch_array($select)) {
+            $imagem = $rs['imagem_produto'];
+            $nome = $rs['nome_produto'];
+            $desc = $rs['desc_produto'];
+            $valor = $rs['valor'];
+            $desconto = $rs['desconto'];
+            $subcat = $rs['id_subcategoria'];
+            $prod_mes = $rs['produto_mes'];
+            $status = $rs['status'];
+
+            if($desconto == '') $desconto = 0;
+
+            ($prod_mes == 1) ? $chkOnProd = "checked" : $chkOffProd = "checked";
+            ($status == 1) ? $chkOn = "checked" : $chkOff = "checked";
         }
     }
 }
@@ -39,13 +70,22 @@ if (isset($_POST['btn-cadastrar'])) {
     $file_name = $_FILES['foto'];
     $imagem = uploadImagem($file_name);
 
-    echo $subcat;
+    if($modo == 'editar'){
+        $sql = "update tbl_produtos set nome_produto = '".$nome."', desc_produto = '".$desc."', valor = ".$valor.",  
+        desconto = ".$desconto.", produto_mes = ".$prod_mes.", status = '".$status."', id_subcategoria = ".$subcat." where id_produto = ".$cod;
 
-    if($imagem != ''){
-        $sql = "INSERT INTO tbl_produtos VALUES (null, '".$imagem."', '".$nome."', '".$desc."', ".$valor.", 
-        ".$desconto.", ".$prod_mes.", ".$status.", ".$subcat.")";
+        if($imagem != ''){
+            unlink('./db/files/'.$foto);
+            $sql = "update tbl_produtos set imagem_produto = '".$imagem."', nome_produto = '".$nome."', desc_produto = '".$desc."', valor = ".$valor.",  
+            desconto = ".$desconto.", produto_mes = ".$prod_mes.", status = '".$status."', id_subcategoria = ".$subcat." where id_produto = ".$cod;;
+        }
     }else{
-        echo 'erro, escolha uma imagem para prosseguir';
+        if($imagem != ''){
+            $sql = "INSERT INTO tbl_produtos VALUES (null, '".$imagem."', '".$nome."', '".$desc."', ".$valor.", 
+            ".$desconto.", ".$prod_mes.", ".$status.", ".$subcat.")";
+        }else{
+            echo 'erro, escolha uma imagem para prosseguir';
+        }
     }
 
     if (mysqli_query($conexao, $sql)) {
@@ -87,10 +127,10 @@ if (isset($_POST['btn-cadastrar'])) {
                     <img src="db/files/<?= $imagem ?>" id="output">
                     <img src="./images/camera.png" alt="Select img" />
                 </label>
-                <input type="text" value="" name="txt-nome" id="" placeholder="Nome do produto"> <br>
-                <textarea name="txt-desc" placeholder="Descrição do produto" id="" cols="30" rows="10"></textarea>
-                <input type="text" value="" name="txt-valor" id="" placeholder="Valor do produto"> <br>
-                <input type="text" value="" name="txt-desconto" id="" placeholder="Porcentagem de desconto"> <br>
+                <input type="text" value="<?= $nome ?>" name="txt-nome" id="" placeholder="Nome do produto"> <br>
+                <textarea name="txt-desc" placeholder="Descrição do produto" id="" cols="30" rows="10"><?= $desc ?></textarea>
+                <input type="text" value="<?= $valor ?>" name="txt-valor" id="" placeholder="Valor do produto"> <br>
+                <input type="text" value="<?= $desconto ?>" name="txt-desconto" id="" placeholder="Porcentagem de desconto"> <br>
                 <select name="select-sub" id="">
                     <?php
 
@@ -101,20 +141,20 @@ if (isset($_POST['btn-cadastrar'])) {
                     while ($rs = mysqli_fetch_array($select)) {
                         ?>
 
-                        <option value="<?= $rs['id_subcategoria']?>"><?= $rs['nome_subcategoria'] ?></option>
+                        <option <?= $subcat == $rs['id_subcategoria'] ? 'selected' : '' ?> value="<?= $rs['id_subcategoria']?>"><?= $rs['nome_subcategoria'] ?></option>
                     <?php
                     }
                     ?>
                 </select>
                 <div class="rg-sexo">
                     Definir como produto do mês <br>
-                    <input type="radio" name="prod-mes" value="1" id="" checked>Sim
-                    <input type="radio" name="prod-mes" value="0" id="">Não
+                    <input type="radio" <?= $chkOnProd ?> name="prod-mes" value="1" id="" checked>Sim
+                    <input type="radio" <?= $chkOffProd ?> name="prod-mes" value="0" id="">Não
                 </div>
                 <div class="rg-sexo">
                     Status <br>
-                    <input type="radio" name="status" value="1" id="" checked>Online
-                    <input type="radio" name="status" value="0" id="">Offline
+                    <input type="radio" <?= $chkOn ?> name="status" value="1" id="" checked>Online
+                    <input type="radio" <?= $chkOff ?> name="status" value="0" id="">Offline
                 </div>
                 <input type="submit" name="btn-cadastrar" value="Cadastrar">
             </form>

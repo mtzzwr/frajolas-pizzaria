@@ -59,7 +59,7 @@ $conexao = conexaoMysql();
                                 <td>R$<?php echo $rs['valor']; ?></td>
                                 <td>
                                     <a onclick="modalDados(<?= $rs['id_usuario']; ?>);" class="btn-visualizar" href="#"><img src="./images/lupa.png" alt=""></a>
-                                    <a href="./add_usuario.php?modo=editar&codigo=<?= $rs['id_produto']; ?>" class="btn-editar" href="#"><img src="./images/pen.png" alt=""></a>
+                                    <a href="./crud_produto.php?modo=editar&codigo=<?= $rs['id_produto']; ?>" class="btn-editar" href="#"><img src="./images/pen.png" alt=""></a>
                                     <a onclick="return confirm('Deseja realmente deletar o produto?')" href="./crud_produto.php?foto=<?= $rs['imagem_produto'];?>&modo=deletar&codigo=<?= $rs['id_produto'] ?>"><img src="./images/delete.png" alt=""></a>
                                 </td>
                                 <td><?php if ($rs['status'] == 1) {

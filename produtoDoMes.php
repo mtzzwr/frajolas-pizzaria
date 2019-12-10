@@ -1,3 +1,13 @@
+<?php
+
+require_once('db/conexao.php');
+$conexao = conexaoMysql();
+
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,15 +56,29 @@
             <div class="txt-produto-mes">
                 <span>Todos os meses, preparamos para os nossos clientes, um produto a um preço especial.</span>
             </div>
-            <div class="img-produto-mes">
-                <img src="./images/bg-pizza01.jpg" alt="Pizza do mês">
-            </div>
-            <div class="desc-produto-mes">
-                <h1>Pizza aleatória</h1>
-                <span>Pizza aleatória Pizza aleatória Pizza aleatória</span>
-                <p>R$ 30,00</p>
-                <a class="btn-produto-mes" href="#">Ver detalhes</a>
-            </div>
+            <?php
+
+            $sql = "SELECT * FROM tbl_produtos WHERE status = 1 and produto_mes <> 0";
+            $select = mysqli_query($conexao, $sql);
+
+            while ($rs = mysqli_fetch_array($select)) {
+                ?>
+
+                <div class="img-produto-mes">
+                    <img src="cms/db/files/<?= $rs['imagem_produto'] ?>" alt="Pizza do mês">
+                </div>
+                <div class="desc-produto-mes">
+                    <h1><?= $rs['nome_produto'] ?></h1>
+                    <span><?= $rs['desc_produto'] ?></span>
+                    <p><?= $rs['valor'] ?></p>
+                    <a class="btn-produto-mes" href="#">Ver detalhes</a>
+                </div>
+
+            <?php
+            }
+
+            ?>
+
         </div>
         <footer>
             <a class="btn-sistema" href="#">Sistema Interno</a>

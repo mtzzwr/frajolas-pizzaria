@@ -68,7 +68,7 @@ session_start();
 
                 <div class="card-produto">
                     <div class="img-produto">
-                        <img src="./images/pizza-img.jpg" alt="Pizza">
+                        <img src="cms/db/files/<?= $rs['imagem_produto'] ?>" alt="Pizza do mês">
                     </div>
                     <div class="nome-produto">
                         <?= $rs['nome_produto'] ?>
