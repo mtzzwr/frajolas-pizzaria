@@ -29,7 +29,7 @@ if(isset($_GET['subcategoria'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./cms/js/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/template.css">
     <link rel="stylesheet" href="./css/slider.css">
@@ -119,7 +119,7 @@ if(isset($_GET['subcategoria'])){
                     <ul>
                         <?php
 
-                        $sql_cat = 'SELECT * FROM tbl_categoria';
+                        $sql_cat = 'SELECT * FROM tbl_categoria WHERE status <> 0';
 
                         $select = mysqli_query($conexao, $sql_cat);
 
@@ -131,7 +131,7 @@ if(isset($_GET['subcategoria'])){
                                 <ul>
                                     <?php
 
-                                        $sql_sub = 'SELECT * FROM tbl_subcategoria WHERE id_categoria = '.$rs['id_categoria'];
+                                        $sql_sub = 'SELECT * FROM tbl_subcategoria WHERE  status <> 0 and id_categoria = '.$rs['id_categoria'];
 
                                         $select_sub = mysqli_query($conexao, $sql_sub);
 
@@ -167,7 +167,7 @@ if(isset($_GET['subcategoria'])){
                             <?= $rs['desc_produto'] ?>
                         </div>
                         <div class="preco-produto">
-                            <?= $rs['valor'] ?>
+                            R$<?= $rs['valor'] ?>
                         </div>
                         <div class="btn-detalhes">
                             <a href="#">Detalhes</a>

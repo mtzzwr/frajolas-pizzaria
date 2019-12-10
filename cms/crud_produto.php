@@ -3,6 +3,25 @@
 require_once('../db/conexao.php');
 $conexao = conexaoMysql();
 
+$modo = null;
+$cod = 0;
+
+$modo = @$_GET['modo'];
+$cod = @$_GET['codigo'];
+$foto = @$_GET['foto'];
+
+if (isset($modo)) {
+    if ($modo == 'deletar') {
+        $sql = "DELETE FROM tbl_produtos WHERE id_produto = " . $cod . "";
+
+        if (mysqli_query($conexao, $sql)) {
+            unlink('./db/files/'.$foto);
+            header('location:./adm_produto.php');
+        } else {
+            echo 'erro ao excluir';
+        }
+    }
+}
 
 if (isset($_POST['btn-cadastrar'])) {
     require_once './db/upload_imagem.php';

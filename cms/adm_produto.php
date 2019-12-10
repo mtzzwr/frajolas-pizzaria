@@ -38,8 +38,9 @@ $conexao = conexaoMysql();
                 <a href="crud_produto.php">Adicionar novo produto</a>
             </div>
             <table>
-                <th>Nivel</th>
+                <th>Pizza</th>
                 <th>Descrição</th>
+                <th>Valor</th>
                 <th>Ações</th>
                 <th>Status</th>
                 <tbody>
@@ -55,8 +56,11 @@ $conexao = conexaoMysql();
                             <tr>
                                 <td><?php echo $rs['nome_produto']; ?></td>
                                 <td><?php echo $rs['desc_produto']; ?></td>
+                                <td>R$<?php echo $rs['valor']; ?></td>
                                 <td>
-                                    <a href="./add_nivel.php?modo=editar&codigo=<?= $rs['id_nivel']; ?>" class="btn-editar"><img src="./images/pen.png" alt=""></a>
+                                    <a onclick="modalDados(<?= $rs['id_usuario']; ?>);" class="btn-visualizar" href="#"><img src="./images/lupa.png" alt=""></a>
+                                    <a href="./add_usuario.php?modo=editar&codigo=<?= $rs['id_produto']; ?>" class="btn-editar" href="#"><img src="./images/pen.png" alt=""></a>
+                                    <a onclick="return confirm('Deseja realmente deletar o produto?')" href="./crud_produto.php?foto=<?= $rs['imagem_produto'];?>&modo=deletar&codigo=<?= $rs['id_produto'] ?>"><img src="./images/delete.png" alt=""></a>
                                 </td>
                                 <td><?php if ($rs['status'] == 1) {
 

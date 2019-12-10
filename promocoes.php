@@ -1,3 +1,14 @@
+<?php
+
+require_once('db/conexao.php');
+$conexao = conexaoMysql();
+
+session_start();
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,131 +58,40 @@
             <h1>Pizzas</h1>
         </div>
         <div class="container-produtos-promocoes">
-            <div class="card-produto">
-                <div class="img-produto">
-                    <img src="./images/pizza-img.jpg" alt="Pizza">
+            <?php
+
+            $sql = "SELECT * FROM tbl_produtos WHERE status = 1 and desconto <> 0";
+            $select = mysqli_query($conexao, $sql);
+
+            while ($rs = mysqli_fetch_array($select)) {
+                ?>
+
+                <div class="card-produto">
+                    <div class="img-produto">
+                        <img src="./images/pizza-img.jpg" alt="Pizza">
+                    </div>
+                    <div class="nome-produto">
+                        <?= $rs['nome_produto'] ?>
+                    </div>
+                    <div class="descricao-produto">
+                        <?= $rs['desc_produto'] ?>
+                    </div>
+                    <div class="preco-antigo">
+                        <small>R$<?= $rs['valor'] ?></small>
+                    </div>
+                    <div class="preco-produto">
+                        R$<?php echo ($rs['valor'] * ($rs['desconto'] / 100) - $rs['valor']) * -1 ?>
+                    </div>
+                    <div class="btn-detalhes">
+                        <a href="#">Detalhes</a>
+                    </div>
                 </div>
-                <div class="nome-produto">
-                    Pizza
-                </div>
-                <div class="descricao-produto">
-                    Pizza aleatória Pizza aleatória
-                </div>
-                <div class="preco-antigo">
-                    <small>R$ 32,00</small>
-                </div>
-                <div class="preco-produto">
-                    R$ 30,00
-                </div>
-                <div class="btn-detalhes">
-                    <a href="#">Detalhes</a>
-                </div>
-            </div>
-            <div class="card-produto">
-                <div class="img-produto">
-                    <img src="./images/pizza-img.jpg" alt="Pizza">
-                </div>
-                <div class="nome-produto">
-                    Pizza
-                </div>
-                <div class="descricao-produto">
-                    Pizza aleatória Pizza aleatória
-                </div>
-                <div class="preco-antigo">
-                    <small>R$ 32,00</small>
-                </div>
-                <div class="preco-produto">
-                    R$ 30,00
-                </div>
-                <div class="btn-detalhes">
-                    <a href="#">Detalhes</a>
-                </div>
-            </div>
-            <div class="card-produto">
-                <div class="img-produto">
-                    <img src="./images/pizza-promo.jpg" alt="Pizza">
-                </div>
-                <div class="nome-produto">
-                    Pizza
-                </div>
-                <div class="descricao-produto">
-                    Pizza aleatória Pizza aleatória
-                </div>
-                <div class="preco-antigo">
-                    <small>R$ 32,00</small>
-                </div>
-                <div class="preco-produto">
-                    R$ 30,00
-                </div>
-                <div class="btn-detalhes">
-                    <a href="#">Detalhes</a>
-                </div>
-            </div>
-        </div>
-        <div class="titulo-promocao">
-            <h1>Combos</h1>
-        </div>
-        <div class="container-produtos-promocoes">
-            <div class="card-produto">
-                <div class="img-produto">
-                    <img src="./images/pizza-combo.jpg" alt="Pizza">
-                </div>
-                <div class="nome-produto">
-                    Combo Pizza + Pepsi
-                </div>
-                <div class="descricao-produto">
-                    Pizza aleatória Pizza aleatória
-                </div>
-                <div class="preco-antigo">
-                    <small>R$ 45,00</small>
-                </div>
-                <div class="preco-produto">
-                    R$ 40,00
-                </div>
-                <div class="btn-detalhes">
-                    <a href="#">Detalhes</a>
-                </div>
-            </div>
-            <div class="card-produto">
-                <div class="img-produto">
-                    <img src="./images/pizza-combo.jpg" alt="Pizza">
-                </div>
-                <div class="nome-produto">
-                    Combo Pizza + Pepsi
-                </div>
-                <div class="descricao-produto">
-                    Pizza aleatória Pizza aleatória
-                </div>
-                <div class="preco-antigo">
-                    <small>R$ 45,00</small>
-                </div>
-                <div class="preco-produto">
-                    R$ 40,00
-                </div>
-                <div class="btn-detalhes">
-                    <a href="#">Detalhes</a>
-                </div>
-            </div>
-            <div class="card-produto">
-                <div class="img-produto">
-                    <img src="./images/pizza-combo.jpg" alt="Pizza">
-                </div>
-                <div class="nome-produto">
-                    Combo Pizza + Pepsi
-                </div>
-                <div class="descricao-produto">
-                    Pizza aleatória Pizza aleatória
-                </div>
-                <div class="preco-antigo">
-                    <small>R$ 45,00</small>
-                </div>
-                <div class="preco-produto">
-                    R$ 40,00
-                </div>
-                <div class="btn-detalhes">
-                    <a href="#">Detalhes</a>
-                </div>
-            </div>
+
+            <?php
+            }
+
+            ?>
+
         </div>
         <footer>
             <a class="btn-sistema" href="#">Sistema Interno</a>

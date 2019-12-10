@@ -46,6 +46,10 @@ $conexao = conexaoMysql();
                 <a href="conteudo_lojas.php"><img src="./images/pag-lojas.png" alt="Página Lojas"></a>
                 <span>Página Lojas</span>
             </div>
+            <div class="card-conteudo">
+                <a href="adm_categoria.php"><img src="./images/menu-cms.png" alt="Categoria e subcategoria"></a>
+                <span>Menu lateral - Homoe</span>
+            </div>
         </div>
     </section>
     <?php include './include/footer.php'; ?>

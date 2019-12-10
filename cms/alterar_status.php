@@ -36,6 +36,12 @@ if (isset($alterar)) {
     }else if($alterar == 'produto'){
         $nome_tabela = 'tbl_produtos';
         $id_tabela = 'id_produto';
+    }else if($alterar == 'categoria'){
+        $nome_tabela = 'tbl_categoria';
+        $id_tabela = 'id_categoria';
+    }else if($alterar == 'subcategoria'){
+        $nome_tabela = 'tbl_subcategoria';
+        $id_tabela = 'id_subcategoria';
     }
 
     $sql = "SELECT * FROM ".$nome_tabela." WHERE ".$id_tabela." = ".$cod;
