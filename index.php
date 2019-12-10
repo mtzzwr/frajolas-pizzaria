@@ -5,8 +5,17 @@ $conexao = conexaoMysql();
 
 session_start();
 
+$sql = null;
+
 if (isset($_POST['btnEntrarCms'])) {
     require_once './cms/login.php';
+}
+
+if(isset($_GET['subcategoria'])){
+    $id_sub = $_GET['subcategoria'];
+    $sql = "SELECT * FROM tbl_produtos WHERE id_subcategoria = ".$id_sub." and status = 1";
+}else{
+    $sql = "SELECT * FROM tbl_produtos WHERE status = 1 ORDER BY rand()";
 }
 
 ?>
@@ -36,20 +45,6 @@ if (isset($_POST['btnEntrarCms'])) {
                 $(this).parent(".sub-menu").children("ul").slideToggle("100");
                 $(this).find(".right").toggleClass("fa-caret-up fa-caret-down");
             });
-
-            // $(".sidemenu-item").on('click', function() {
-
-            //     if ($("#sub1").css('display') == 'none') {
-            //         $("#sub1").css({
-            //             display: 'block'
-            //         });
-            //     } else {
-            //         $("#sub1").css({
-            //             display: 'none'
-            //         });
-            //     }
-            // })
-
         });
     </script>
     <title>Frajola's Pizzaria</title>
@@ -124,9 +119,9 @@ if (isset($_POST['btnEntrarCms'])) {
                     <ul>
                         <?php
 
-                        $sql = 'SELECT * FROM tbl_categoria';
+                        $sql_cat = 'SELECT * FROM tbl_categoria';
 
-                        $select = mysqli_query($conexao, $sql);
+                        $select = mysqli_query($conexao, $sql_cat);
 
                         while ($rs = mysqli_fetch_array($select)) {
 
@@ -143,7 +138,7 @@ if (isset($_POST['btnEntrarCms'])) {
                                         while ($rs_sub = mysqli_fetch_array($select_sub)) {
                                             ?>
 
-                                        <li><a href='#settings'><?=$rs_sub['nome_subcategoria']?></a></li>
+                                        <li><a href='index.php?subcategoria=<?= $rs_sub['id_subcategoria']; ?>'><?=$rs_sub['nome_subcategoria']?></a></li>
 
                                     <?php } ?>
                                 </ul>
@@ -156,9 +151,6 @@ if (isset($_POST['btnEntrarCms'])) {
             </div>
             <div class="container-produtos">
                 <?php
-
-                $sql = 'SELECT * FROM tbl_produtos WHERE status <> 0';
-
                 $select = mysqli_query($conexao, $sql);
 
                 while ($rs = mysqli_fetch_array($select)) {

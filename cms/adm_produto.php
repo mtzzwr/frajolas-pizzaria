@@ -61,13 +61,13 @@ $conexao = conexaoMysql();
                                 <td><?php if ($rs['status'] == 1) {
 
                                                 ?>
-                                        <a href='alterar_status.php?alterar=nivel&status=<?= $rs['status'] ?>&codigo=<?= $rs['id_nivel']; ?>'><img src='./images/online.png' alt="Desativar" title="Desativar" /></a>
+                                        <a href='alterar_status.php?alterar=produto&status=<?= $rs['status'] ?>&codigo=<?= $rs['id_produto']; ?>'><img src='./images/online.png' alt="Desativar" title="Desativar" /></a>
 
                                     <?php
                                             } else if ($rs['status'] == 0) {
 
                                                 ?>
-                                        <a href='alterar_status.php?alterar=nivel&status=<?= $rs['status'] ?>&codigo=<?= $rs['id_nivel']; ?>'><img src='./images/offline.png' alt="Ativar" title="Ativar" /></a>
+                                        <a href='alterar_status.php?alterar=produto&status=<?= $rs['status'] ?>&codigo=<?= $rs['id_produto']; ?>'><img src='./images/offline.png' alt="Ativar" title="Ativar" /></a>
 
                                     <?php
                                             } ?></td>

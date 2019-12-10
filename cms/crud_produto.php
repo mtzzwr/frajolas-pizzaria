@@ -20,9 +20,11 @@ if (isset($_POST['btn-cadastrar'])) {
     $file_name = $_FILES['foto'];
     $imagem = uploadImagem($file_name);
 
+    echo $subcat;
+
     if($imagem != ''){
         $sql = "INSERT INTO tbl_produtos VALUES (null, '".$imagem."', '".$nome."', '".$desc."', ".$valor.", 
-        ".$desconto.", ".$subcat.", ".$prod_mes.", ".$status.")";
+        ".$desconto.", ".$prod_mes.", ".$status.", ".$subcat.")";
     }else{
         echo 'erro, escolha uma imagem para prosseguir';
     }
