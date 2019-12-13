@@ -99,7 +99,9 @@ $conexao = conexaoMysql();
             </form>
         </div>
         <footer>
-            <a class="btn-sistema" href="#">Sistema Interno</a>
+            <div>
+
+            </div>
             <div class="endereco">
                 <p>Endereço: Avenida Luis Carlos Berrini, n° 666 - Berrini/SP</p>
             </div>

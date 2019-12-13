@@ -11,10 +11,10 @@ if (isset($_POST['btnEntrarCms'])) {
     require_once './cms/login.php';
 }
 
-if(isset($_GET['subcategoria'])){
+if (isset($_GET['subcategoria'])) {
     $id_sub = $_GET['subcategoria'];
-    $sql = "SELECT * FROM tbl_produtos WHERE id_subcategoria = ".$id_sub." and status = 1";
-}else{
+    $sql = "SELECT * FROM tbl_produtos WHERE id_subcategoria = " . $id_sub . " and status = 1";
+} else {
     $sql = "SELECT * FROM tbl_produtos WHERE status = 1 ORDER BY rand()";
 }
 
@@ -127,18 +127,18 @@ if(isset($_GET['subcategoria'])){
 
                             ?>
 
-                            <li class='sub-menu'><a href='#settings'><?= $rs['nome_categoria'] ?></a>
+                            <li class='sub-menu'><a href='#menu'><?= $rs['nome_categoria'] ?></a>
                                 <ul>
                                     <?php
 
-                                        $sql_sub = 'SELECT * FROM tbl_subcategoria WHERE  status <> 0 and id_categoria = '.$rs['id_categoria'];
+                                        $sql_sub = 'SELECT * FROM tbl_subcategoria WHERE  status <> 0 and id_categoria = ' . $rs['id_categoria'];
 
                                         $select_sub = mysqli_query($conexao, $sql_sub);
 
                                         while ($rs_sub = mysqli_fetch_array($select_sub)) {
                                             ?>
 
-                                        <li><a href='index.php?subcategoria=<?= $rs_sub['id_subcategoria']; ?>'><?=$rs_sub['nome_subcategoria']?></a></li>
+                                        <li><a href='index.php?subcategoria=<?= $rs_sub['id_subcategoria']; ?>'><?= $rs_sub['nome_subcategoria'] ?></a></li>
 
                                     <?php } ?>
                                 </ul>
@@ -182,13 +182,15 @@ if(isset($_GET['subcategoria'])){
         </div>
         </div>
         <footer>
-            <a class="btn-sistema" href="./mvc/index.php">Sistema Interno</a>
+            <div>
+
+            </div>
             <div class="endereco">
                 <p>Endereço: Avenida Luis Carlos Berrini, n° 666 - Berrini/SP</p>
             </div>
-            <div class="download-app">
+            <a class="download-app">
                 <a href="#"><img src="./images/download-btn.png" alt="Baixe nosso aplicativo" title="Baixe nosso aplicativo"></a>
-            </div>
+            </a>
         </footer>
     </section>
 
